@@ -1,0 +1,888 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Rabbittize AWS One-Click Integration - Standard permissions for cloud cost, health, and AI observability.",
+    "Parameters": {
+        "RabbittizeWorkspaceID": {
+            "Description": "The Rabbittize Workspace ID to sync your account. Do not change this value.",
+            "MinLength": "1",
+            "Type": "String",
+            "Default": "REPLACE_WITH_RABBITTIZE_WORKSPACE_ID"
+        },
+        "RabbittizeExternalID": {
+            "Description": "The Rabbittize external ID for secure cross-account authentication. Do not change this value.",
+            "MinLength": "1",
+            "Type": "String",
+            "Default": "REPLACE_WITH_RABBITTIZE_EXTERNAL_ID"
+        },
+        "RabbittizeTrustRoleArn": {
+            "Description": "The Rabbittize IAM role that is permitted to assume the created role.",
+            "MinLength": "1",
+            "Type": "String",
+            "Default": "767397861361"
+        },
+        "RabbittizePingbackArn": {
+            "Description": "The ARN of the Rabbittize webhook to notify upon successful stack creation.",
+            "MinLength": "1",
+            "Type": "String",
+            "Default": "arn:aws:sns:us-east-1:767397861361:rabbittize-customer-pingbacks"
+        },
+        "RabbittizeDomain": {
+            "Description": "The Rabbittize domain identifier.",
+            "MinLength": "1",
+            "Type": "String",
+            "Default": "rabbittize.com"
+        },
+        "RabbittizeNotificationTopicArn": {
+            "Description": "Optional: SNS Topic ARN for S3 bucket notifications.",
+            "Type": "String",
+            "Default": ""
+        },
+        "ReportName": {
+            "Description": "The name of the Cost and Usage Report.",
+            "MinLength": "1",
+            "Type": "String",
+            "Default": "RabbittizeCostReport"
+        },
+        "BucketName": {
+            "Description": "The name of the S3 bucket where CUR will be stored. Must be globally unique.",
+            "MinLength": "1",
+            "Type": "String"
+        },
+        "TimeUnit": {
+            "Description": "Aggregation granularity for the Cost and Usage Report.",
+            "Type": "String",
+            "AllowedValues": [
+                "HOURLY",
+                "DAILY"
+            ],
+            "Default": "DAILY"
+        },
+        "EnableAiObservability": {
+            "Description": "Enable AI Observability module — grants read-only access to Bedrock, AI-related CloudWatch metrics, and Cost Explorer AI filters.",
+            "Type": "String",
+            "AllowedValues": ["true", "false"],
+            "Default": "true"
+        },
+        "EnableLogForwarding": {
+            "Description": "Enable advanced log forwarding — deploys a Lambda function that forwards AI application logs to Rabbittize for richer trace analysis.",
+            "Type": "String",
+            "AllowedValues": ["true", "false"],
+            "Default": "false"
+        },
+        "RabbittizeWebhookUrl": {
+            "Description": "The Rabbittize HTTPS webhook endpoint for log forwarding. Required only if EnableLogForwarding is true.",
+            "Type": "String",
+            "Default": ""
+        }
+    },
+    "Mappings": {
+        "TimeUnitMap": {
+            "DAILY": {
+                "S3Prefix": "daily-v1"
+            },
+            "HOURLY": {
+                "S3Prefix": "hourly-v1"
+            }
+        }
+    },
+    "Conditions": {
+        "HasNotificationTopic": {
+            "Fn::Not": [
+                {
+                    "Fn::Equals": [
+                        { "Ref": "RabbittizeNotificationTopicArn" },
+                        ""
+                    ]
+                }
+            ]
+        },
+        "AiObservabilityEnabled": {
+            "Fn::Equals": [ { "Ref": "EnableAiObservability" }, "true" ]
+        },
+        "LogForwardingEnabled": {
+            "Fn::And": [
+                { "Fn::Equals": [ { "Ref": "EnableLogForwarding" }, "true" ] },
+                { "Fn::Not": [ { "Fn::Equals": [ { "Ref": "RabbittizeWebhookUrl" }, "" ] } ] }
+            ]
+        }
+    },
+    "Resources": {
+        "CrossAccountRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "RoleName": "RabbittizeCrossAccountRole",
+                "AssumeRolePolicyDocument": {
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "AWS": {
+                                    "Ref": "RabbittizeTrustRoleArn"
+                                }
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ],
+                            "Condition": {
+                                "StringEquals": {
+                                    "sts:ExternalId": {
+                                        "Ref": "RabbittizeExternalID"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                },
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/job-function/ViewOnlyAccess"
+                ],
+                "Path": "/",
+                "Policies": [
+                    {
+                        "PolicyName": "RabbittizeBillingReadOnly",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Sid": "BillingAccess",
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "aws-portal:ViewBilling",
+                                        "aws-portal:ViewUsage",
+                                        "budgets:Describe*",
+                                        "budgets:View*",
+                                        "ce:Get*",
+                                        "ce:Describe*",
+                                        "ce:List*",
+                                        "cur:Describe*",
+                                        "pricing:*",
+                                        "organizations:Describe*",
+                                        "organizations:List*",
+                                        "savingsplans:Describe*"
+                                    ],
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "PolicyName": "RabbittizeOptimizationAccess",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Sid": "OptimizationActions",
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ec2:AcceptReservedInstancesExchangeQuote",
+                                        "ec2:CancelReservedInstancesListing",
+                                        "ec2:CreateReservedInstancesListing",
+                                        "ec2:DeleteQueuedReservedInstances",
+                                        "ec2:CreateTags",
+                                        "ec2:ModifyReservedInstances",
+                                        "ec2:PurchaseReservedInstancesOffering",
+                                        "rds:PurchaseReservedDBInstancesOffering",
+                                        "elasticache:PurchaseReservedCacheNodesOffering",
+                                        "es:PurchaseReservedInstanceOffering",
+                                        "redshift:PurchaseReservedNodeOffering",
+                                        "redshift:AcceptReservedNodeExchange",
+                                        "redshift:GetReservedNodeExchangeConfigurationOptions",
+                                        "redshift:GetReservedNodeExchangeOfferings",
+                                        "savingsplans:*",
+                                        "servicequotas:Get*",
+                                        "servicequotas:List*",
+                                        "servicequotas:RequestServiceQuotaIncrease",
+                                        "support:*",
+                                        "ce:StartSavingsPlansPurchaseRecommendationGeneration"
+                                    ],
+                                    "Resource": "*"
+                                },
+                                {
+                                    "Sid": "OptimizationRuntimeExecutionActions",
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "autoscaling:UpdateAutoScalingGroup",
+                                        "application-autoscaling:RegisterScalableTarget",
+                                        "application-autoscaling:PutScalingPolicy",
+                                        "ec2:StopInstances",
+                                        "ec2:StartInstances",
+                                        "ec2:TerminateInstances",
+                                        "ec2:ModifyInstanceAttribute",
+                                        "ec2:CreateSnapshot",
+                                        "ec2:DeleteVolume",
+                                        "rds:StopDBInstance",
+                                        "rds:StartDBInstance",
+                                        "rds:ModifyDBInstance",
+                                        "rds:CreateDBSnapshot",
+                                        "rds:DeleteDBSnapshot",
+                                        "lambda:UpdateFunctionConfiguration",
+                                        "s3:PutLifecycleConfiguration",
+                                        "s3:GetLifecycleConfiguration",
+                                        "s3:DeleteBucket",
+                                        "s3:ListBucket",
+                                        "s3:ListBucketVersions",
+                                        "s3:DeleteObject",
+                                        "s3:DeleteObjectVersion",
+                                        "ecs:UpdateService"
+                                    ],
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "PolicyName": "RabbittizeCloudWatchMetricsReadOnly",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Sid": "ContainerInsightsReadOnly",
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "logs:List*",
+                                        "logs:Describe*",
+                                        "logs:StartQuery",
+                                        "logs:StopQuery",
+                                        "logs:Filter*",
+                                        "logs:Get*"
+                                    ],
+                                    "Resource": "arn:aws:logs:*:*:log-group:/aws/containerinsights/*"
+                                },
+                                {
+                                    "Sid": "ContainerInsightsLogStream",
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "logs:GetQueryResults",
+                                        "logs:DescribeLogGroups"
+                                    ],
+                                    "Resource": "arn:aws:logs:*:*:log-group::log-stream:*"
+                                },
+                                {
+                                    "Sid": "ContainerMetricsAccess",
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "autoscaling:Describe*",
+                                        "cloudwatch:Describe*",
+                                        "cloudwatch:Get*",
+                                        "cloudwatch:List*",
+                                        "cloudwatch:PutMetricAlarm",
+                                        "cloudwatch:DeleteAlarms",
+                                        "cloudwatch:EnableAlarmActions",
+                                        "cloudwatch:DisableAlarmActions"
+                                    ],
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "PolicyName": "RabbittizeAdditionalResourceReadOnly",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Resource": "*",
+                                    "Action": [
+                                        "a4b:List*",
+                                        "a4b:Search*",
+                                        "acm:Describe*",
+                                        "acm:List*",
+                                        "acm-pca:Describe*",
+                                        "acm-pca:List*",
+                                        "amplify:ListApps",
+                                        "amplify:ListBranches",
+                                        "amplify:ListDomainAssociations",
+                                        "amplify:ListJobs",
+                                        "application-autoscaling:Describe*",
+                                        "applicationinsights:Describe*",
+                                        "applicationinsights:List*",
+                                        "appmesh:Describe*",
+                                        "appmesh:List*",
+                                        "appstream:Describe*",
+                                        "appstream:List*",
+                                        "appsync:List*",
+                                        "autoscaling-plans:Describe*",
+                                        "athena:Batch*",
+                                        "backup:Describe*",
+                                        "backup:List*",
+                                        "batch:List*",
+                                        "batch:Describe*",
+                                        "budgets:Describe*",
+                                        "budgets:View*",
+                                        "ce:Get*",
+                                        "chatbot:Describe*",
+                                        "chime:List*",
+                                        "chime:Retrieve*",
+                                        "chime:Search*",
+                                        "chime:Validate*",
+                                        "cloud9:Describe*",
+                                        "cloud9:List*",
+                                        "clouddirectory:List*",
+                                        "cloudformation:Describe*",
+                                        "cloudhsm:List*",
+                                        "cloudhsm:Describe*",
+                                        "cloudsearch:Describe*",
+                                        "cloudtrail:Describe*",
+                                        "cloudtrail:Get*",
+                                        "cloudtrail:List*",
+                                        "cloudwatch:Describe*",
+                                        "codeartifact:DescribeDomain",
+                                        "codeartifact:DescribePackageVersion",
+                                        "codeartifact:DescribeRepository",
+                                        "codeartifact:ListDomains",
+                                        "codeartifact:ListPackages",
+                                        "codeartifact:ListPackageVersionAssets",
+                                        "codeartifact:ListPackageVersionDependencies",
+                                        "codeartifact:ListPackageVersions",
+                                        "codeartifact:ListRepositories",
+                                        "codeartifact:ListRepositoriesInDomain",
+                                        "codebuild:DescribeCodeCoverages",
+                                        "codebuild:DescribeTestCases",
+                                        "codebuild:Get*",
+                                        "codebuild:List*",
+                                        "codebuild:BatchGetBuilds",
+                                        "codebuild:BatchGetProjects",
+                                        "codecommit:Describe*",
+                                        "codeguru-profiler:Describe*",
+                                        "codeguru-profiler:List*",
+                                        "codeguru-reviewer:Describe*",
+                                        "codeguru-reviewer:List*",
+                                        "codepipeline:List*",
+                                        "codepipeline:Get*",
+                                        "codestar:Describe*",
+                                        "compute-optimizer:Get*",
+                                        "connect:Describe*",
+                                        "dataexchange:List*",
+                                        "datasync:Describe*",
+                                        "datasync:List*",
+                                        "datapipeline:Describe*",
+                                        "datapipeline:List*",
+                                        "detective:List*",
+                                        "discovery:Describe*",
+                                        "dms:Describe*",
+                                        "ds:Check*",
+                                        "ds:Describe*",
+                                        "ds:List*",
+                                        "dynamodb:Describe*",
+                                        "dynamodb:List*",
+                                        "ec2:Describe*",
+                                        "ec2:GetCapacityReservationUsage",
+                                        "ec2:GetEbsEncryptionByDefault",
+                                        "ec2:SearchTransitGatewayRoutes",
+                                        "ecr:BatchCheck*",
+                                        "ecr:BatchGet*",
+                                        "ecr:Describe*",
+                                        "ecr:List*",
+                                        "eks:DescribeCluster",
+                                        "eks:DescribeUpdate",
+                                        "eks:Describe*",
+                                        "eks:ListClusters",
+                                        "eks:ListUpdates",
+                                        "eks:List*",
+                                        "elasticache:List*",
+                                        "elasticbeanstalk:Check*",
+                                        "elasticbeanstalk:Describe*",
+                                        "elasticbeanstalk:List*",
+                                        "elasticbeanstalk:Request*",
+                                        "elasticbeanstalk:Retrieve*",
+                                        "elasticbeanstalk:Validate*",
+                                        "elasticfilesystem:Describe*",
+                                        "elasticloadbalancing:Describe*",
+                                        "elasticmapreduce:Describe*",
+                                        "elasticmapreduce:View*",
+                                        "elemental-appliances-software:List*",
+                                        "es:Describe*",
+                                        "es:List*",
+                                        "events:Describe*",
+                                        "events:List*",
+                                        "events:Test*",
+                                        "firehose:Describe*",
+                                        "fsx:Describe*",
+                                        "fsx:List*",
+                                        "freertos:Describe*",
+                                        "freertos:List*",
+                                        "glacier:Describe*",
+                                        "globalaccelerator:Describe*",
+                                        "globalaccelerator:List*",
+                                        "glue:ListCrawlers",
+                                        "glue:ListDevEndpoints",
+                                        "glue:ListJobs",
+                                        "glue:ListMLTransforms",
+                                        "glue:ListTriggers",
+                                        "glue:ListWorkflows",
+                                        "guardduty:List*",
+                                        "health:Describe*",
+                                        "iam:Get*",
+                                        "imagebuilder:List*",
+                                        "importexport:List*",
+                                        "inspector:Describe*",
+                                        "inspector:Preview*",
+                                        "iot:Describe*",
+                                        "iotanalytics:Describe*",
+                                        "iotanalytics:List*",
+                                        "iotsitewise:Describe*",
+                                        "iotsitewise:List*",
+                                        "kafka:Describe*",
+                                        "kafka:List*",
+                                        "kinesisanalytics:Describe*",
+                                        "kinesisanalytics:Discover*",
+                                        "kinesisanalytics:List*",
+                                        "kinesisvideo:Describe*",
+                                        "kinesisvideo:List*",
+                                        "kinesis:Describe*",
+                                        "kinesis:List*",
+                                        "kms:Describe*",
+                                        "kms:List*",
+                                        "license-manager:List*",
+                                        "logs:ListTagsLogGroup",
+                                        "logs:TestMetricFilter",
+                                        "mediaconvert:DescribeEndpoints",
+                                        "mediaconvert:List*",
+                                        "mediapackage:List*",
+                                        "mediapackage:Describe*",
+                                        "medialive:List*",
+                                        "medialive:Describe*",
+                                        "mediaconnect:List*",
+                                        "mediaconnect:Describe*",
+                                        "mediapackage-vod:List*",
+                                        "mediapackage-vod:Describe*",
+                                        "mediastore:List*",
+                                        "mediastore:Describe*",
+                                        "mediatailor:List*",
+                                        "mediatailor:Describe*",
+                                        "mgh:Describe*",
+                                        "mgh:List*",
+                                        "mobilehub:Describe*",
+                                        "mobilehub:List*",
+                                        "mobiletargeting:List*",
+                                        "mq:Describe*",
+                                        "mq:List*",
+                                        "opsworks-cm:List*",
+                                        "organizations:Describe*",
+                                        "outposts:List*",
+                                        "outposts:Get*",
+                                        "personalize:Describe*",
+                                        "personalize:List*",
+                                        "pi:DescribeDimensionKeys",
+                                        "qldb:ListLedgers",
+                                        "qldb:ListTagsForResource",
+                                        "ram:List*",
+                                        "rekognition:List*",
+                                        "rds:List*",
+                                        "redshift:Describe*",
+                                        "redshift:View*",
+                                        "resource-groups:Get*",
+                                        "resource-groups:List*",
+                                        "resource-groups:Search*",
+                                        "robomaker:BatchDescribe*",
+                                        "robomaker:Describe*",
+                                        "robomaker:List*",
+                                        "route53domains:Check*",
+                                        "route53domains:Get*",
+                                        "route53domains:View*",
+                                        "s3:List*",
+                                        "s3:GetBucketLocation",
+                                        "s3:GetBucketTagging",
+                                        "schemas:Describe*",
+                                        "schemas:List*",
+                                        "secretsmanager:List*",
+                                        "secretsmanager:Describe*",
+                                        "securityhub:Describe*",
+                                        "securityhub:List*",
+                                        "securityhub:GetFindings",
+                                        "serverlessrepo:List*",
+                                        "servicecatalog:Describe*",
+                                        "servicediscovery:Get*",
+                                        "servicediscovery:List*",
+                                        "ses:Describe*",
+                                        "shield:Describe*",
+                                        "snowball:Describe*",
+                                        "snowball:List*",
+                                        "sqs:List*",
+                                        "ssm:Describe*",
+                                        "ssm:List*",
+                                        "sso:Describe*",
+                                        "sso:List*",
+                                        "sso:Search*",
+                                        "sso-directory:Describe*",
+                                        "sso-directory:List*",
+                                        "sso-directory:Search*",
+                                        "states:List*",
+                                        "states:Describe*",
+                                        "storagegateway:Describe*",
+                                        "storagegateway:List*",
+                                        "sts:GetCallerIdentity",
+                                        "sts:GetSessionToken",
+                                        "swf:Describe*",
+                                        "synthetics:Describe*",
+                                        "synthetics:List*",
+                                        "alexaforbusiness:List*",
+                                        "amplify:Get*",
+                                        "amplify:List*",
+                                        "apigateway:Get*",
+                                        "transfer:Describe*",
+                                        "transfer:List*",
+                                        "transcribe:List*",
+                                        "iam:GenerateCredentialReport",
+                                        "wafv2:Describe*",
+                                        "worklink:Describe*",
+                                        "worklink:List*"
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "Fn::If": [
+                            "AiObservabilityEnabled",
+                            {
+                                "PolicyName": "RabbittizeAiObservabilityReadOnly",
+                                "PolicyDocument": {
+                                    "Version": "2012-10-17",
+                                    "Statement": [
+                                        {
+                                            "Sid": "BedrockReadOnly",
+                                            "Effect": "Allow",
+                                            "Action": [
+                                                "bedrock:ListFoundationModels",
+                                                "bedrock:GetFoundationModel",
+                                                "bedrock:ListModelInvocationLoggingConfigurations",
+                                                "bedrock:GetModelInvocationLoggingConfiguration",
+                                                "bedrock:ListProvisionedModelThroughputs",
+                                                "bedrock:GetProvisionedModelThroughput"
+                                            ],
+                                            "Resource": "*"
+                                        },
+                                        {
+                                            "Sid": "AiCloudWatchAccess",
+                                            "Effect": "Allow",
+                                            "Action": [
+                                                "cloudwatch:GetMetricData",
+                                                "cloudwatch:GetMetricStatistics",
+                                                "cloudwatch:ListMetrics"
+                                            ],
+                                            "Resource": "*"
+                                        },
+                                        {
+                                            "Sid": "AiLogGroupAccess",
+                                            "Effect": "Allow",
+                                            "Action": [
+                                                "logs:DescribeLogGroups",
+                                                "logs:DescribeLogStreams",
+                                                "logs:StartQuery",
+                                                "logs:GetQueryResults",
+                                                "logs:FilterLogEvents"
+                                            ],
+                                            "Resource": [
+                                                "arn:aws:logs:*:*:log-group:/aws/bedrock/*",
+                                                "arn:aws:logs:*:*:log-group:/aws/sagemaker/*",
+                                                "arn:aws:logs:*:*:log-group:*ai*",
+                                                "arn:aws:logs:*:*:log-group:*llm*"
+                                            ]
+                                        },
+                                        {
+                                            "Sid": "AiCostExplorer",
+                                            "Effect": "Allow",
+                                            "Action": [
+                                                "ce:GetCostAndUsage",
+                                                "ce:GetCostForecast"
+                                            ],
+                                            "Resource": "*"
+                                        },
+                                        {
+                                            "Sid": "AiResourceDiscovery",
+                                            "Effect": "Allow",
+                                            "Action": [
+                                                "tag:GetResources",
+                                                "resource-groups:ListGroups"
+                                            ],
+                                            "Resource": "*"
+                                        }
+                                    ]
+                                }
+                            },
+                            { "Ref": "AWS::NoValue" }
+                        ]
+                    }
+                ]
+            }
+        },
+        "LogForwarderRole": {
+            "Type": "AWS::IAM::Role",
+            "Condition": "LogForwardingEnabled",
+            "Properties": {
+                "RoleName": "RabbittizeLogForwarderRole",
+                "AssumeRolePolicyDocument": {
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": { "Service": "lambda.amazonaws.com" },
+                            "Action": "sts:AssumeRole"
+                        }
+                    ]
+                },
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                ],
+                "Policies": [
+                    {
+                        "PolicyName": "RabbittizeLogForwarderPolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "logs:GetLogEvents",
+                                        "logs:FilterLogEvents"
+                                    ],
+                                    "Resource": [
+                                        "arn:aws:logs:*:*:log-group:/aws/bedrock/*",
+                                        "arn:aws:logs:*:*:log-group:/aws/sagemaker/*"
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "LogForwarderFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Condition": "LogForwardingEnabled",
+            "DependsOn": "LogForwarderRole",
+            "Properties": {
+                "FunctionName": "RabbittizeAiLogForwarder",
+                "Runtime": "nodejs20.x",
+                "Handler": "index.handler",
+                "Role": { "Fn::GetAtt": ["LogForwarderRole", "Arn"] },
+                "Timeout": 30,
+                "MemorySize": 128,
+                "Environment": {
+                    "Variables": {
+                        "RABBITTIZE_WEBHOOK_URL": { "Ref": "RabbittizeWebhookUrl" },
+                        "RABBITTIZE_WORKSPACE_ID": { "Ref": "RabbittizeWorkspaceID" },
+                        "RABBITTIZE_EXTERNAL_ID": { "Ref": "RabbittizeExternalID" }
+                    }
+                },
+                "Code": {
+                    "ZipFile": "const https = require('https'); const url = require('url'); exports.handler = async (event) => { const payload = JSON.stringify({ source: 'cloudwatch-forwarder', workspaceId: process.env.RABBITTIZE_WORKSPACE_ID, externalId: process.env.RABBITTIZE_EXTERNAL_ID, timestamp: new Date().toISOString(), logEvents: (event.awslogs ? Buffer.from(event.awslogs.data, 'base64').toString('utf8') : JSON.stringify(event)) }); const parsed = url.parse(process.env.RABBITTIZE_WEBHOOK_URL); const options = { hostname: parsed.hostname, port: 443, path: parsed.path, method: 'POST', headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload), 'X-Rabbittize-Source': 'log-forwarder' } }; return new Promise((resolve, reject) => { const req = https.request(options, (res) => { let body = ''; res.on('data', (d) => body += d); res.on('end', () => resolve({ statusCode: res.statusCode, body })); }); req.on('error', reject); req.write(payload); req.end(); }); };"
+                }
+            }
+        },
+        "LogForwarderPermission": {
+            "Type": "AWS::Lambda::Permission",
+            "Condition": "LogForwardingEnabled",
+            "Properties": {
+                "FunctionName": { "Ref": "LogForwarderFunction" },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "logs.amazonaws.com",
+                "SourceAccount": { "Ref": "AWS::AccountId" }
+            }
+        },
+        "CostandUsageReportBucket": {
+            "Type": "AWS::S3::Bucket",
+            "DependsOn": "CrossAccountRole",
+            "Properties": {
+                "BucketName": {
+                    "Ref": "BucketName"
+                },
+                "AccessControl": "Private",
+                "PublicAccessBlockConfiguration": {
+                    "BlockPublicAcls": true,
+                    "BlockPublicPolicy": true,
+                    "IgnorePublicAcls": true,
+                    "RestrictPublicBuckets": true
+                },
+                "LifecycleConfiguration": {
+                    "Rules": [
+                        {
+                            "Id": "ExpireOldObjects",
+                            "Status": "Enabled",
+                            "ExpirationInDays": 200
+                        }
+                    ]
+                },
+                "NotificationConfiguration": {
+                    "TopicConfigurations": [
+                        {
+                            "Fn::If": [
+                                "HasNotificationTopic",
+                                {
+                                    "Topic": {
+                                        "Ref": "RabbittizeNotificationTopicArn"
+                                    },
+                                    "Event": "s3:ObjectCreated:*",
+                                    "Filter": {
+                                        "S3Key": {
+                                            "Rules": [
+                                                {
+                                                    "Name": "suffix",
+                                                    "Value": ".gz"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "Ref": "AWS::NoValue"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        "CostandUsageReportBucketPolicy": {
+            "Type": "AWS::S3::BucketPolicy",
+            "DependsOn": "CostandUsageReportBucket",
+            "Properties": {
+                "Bucket": {
+                    "Ref": "CostandUsageReportBucket"
+                },
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Action": [
+                                "s3:GetBucketAcl",
+                                "s3:GetBucketPolicy"
+                            ],
+                            "Effect": "Allow",
+                            "Resource": {
+                                "Fn::Sub": "arn:aws:s3:::${CostandUsageReportBucket}"
+                            },
+                            "Principal": {
+                                "Service": "billingreports.amazonaws.com"
+                            }
+                        },
+                        {
+                            "Action": [
+                                "s3:PutObject"
+                            ],
+                            "Effect": "Allow",
+                            "Resource": {
+                                "Fn::Sub": "arn:aws:s3:::${CostandUsageReportBucket}/*"
+                            },
+                            "Principal": {
+                                "Service": "billingreports.amazonaws.com"
+                            }
+                        },
+                        {
+                            "Action": [
+                                "s3:GetObject",
+                                "s3:GetObjectAcl"
+                            ],
+                            "Effect": "Allow",
+                            "Resource": {
+                                "Fn::Sub": "arn:aws:s3:::${CostandUsageReportBucket}/*"
+                            },
+                            "Principal": {
+                                "AWS": {
+                                    "Fn::GetAtt": [
+                                        "CrossAccountRole",
+                                        "Arn"
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "CostandUsageReport": {
+            "Type": "AWS::CUR::ReportDefinition",
+            "DependsOn": "CostandUsageReportBucketPolicy",
+            "Properties": {
+                "AdditionalArtifacts": [],
+                "AdditionalSchemaElements": [
+                    "RESOURCES"
+                ],
+                "Compression": "GZIP",
+                "Format": "textORcsv",
+                "RefreshClosedReports": true,
+                "ReportName": {
+                    "Ref": "ReportName"
+                },
+                "ReportVersioning": "OVERWRITE_REPORT",
+                "S3Bucket": {
+                    "Ref": "CostandUsageReportBucket"
+                },
+                "S3Prefix": {
+                    "Fn::FindInMap": [
+                        "TimeUnitMap",
+                        {
+                            "Ref": "TimeUnit"
+                        },
+                        "S3Prefix"
+                    ]
+                },
+                "S3Region": "us-east-1",
+                "TimeUnit": {
+                    "Ref": "TimeUnit"
+                }
+            }
+        },
+        "RabbittizePingResource": {
+            "Type": "Custom::RabbittizePingResource",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+                "ServiceToken": {
+                    "Ref": "RabbittizePingbackArn"
+                },
+                "RoleArn": {
+                    "Fn::GetAtt": [
+                        "CrossAccountRole",
+                        "Arn"
+                    ]
+                },
+                "BucketArn": {
+                    "Fn::GetAtt": [
+                        "CostandUsageReportBucket",
+                        "Arn"
+                    ]
+                },
+                "RabbittizeWorkspaceID": {
+                    "Ref": "RabbittizeWorkspaceID"
+                },
+                "RabbittizeExternalID": {
+                    "Ref": "RabbittizeExternalID"
+                },
+                "RabbittizeDomain": {
+                    "Ref": "RabbittizeDomain"
+                }
+            }
+        }
+    },
+    "Outputs": {
+        "RoleArn": {
+            "Value": {
+                "Fn::GetAtt": [
+                    "CrossAccountRole",
+                    "Arn"
+                ]
+            },
+            "Description": "The ARN of the Rabbittize Cross-Account Role."
+        },
+        "BucketName": {
+            "Value": {
+                "Ref": "CostandUsageReportBucket"
+            },
+            "Description": "The name of the CUR S3 bucket."
+        },
+        "AiObservabilityEnabled": {
+            "Value": { "Ref": "EnableAiObservability" },
+            "Description": "Whether AI Observability permissions are enabled."
+        },
+        "LogForwardingEnabled": {
+            "Value": { "Ref": "EnableLogForwarding" },
+            "Description": "Whether AI log forwarding Lambda is deployed."
+        },
+        "LogForwarderArn": {
+            "Condition": "LogForwardingEnabled",
+            "Value": { "Fn::GetAtt": ["LogForwarderFunction", "Arn"] },
+            "Description": "ARN of the log forwarder Lambda function."
+        }
+    }
+}

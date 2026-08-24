@@ -1,0 +1,43 @@
+{
+  "name": "@rabbittwatch/ai-observability",
+  "version": "0.1.7",
+  "description": "RabbittWatch AI Observability tracing SDK",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./langchain": {
+      "import": "./dist/integrations/langchain.js",
+      "types": "./dist/integrations/langchain.d.ts"
+    }
+  },
+  "bin": {
+    "ai-observability": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "demo:send-trace": "node examples/send-sample-trace.mjs"
+  },
+  "peerDependencies": {
+    "express": ">=4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "express": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@langchain/core": "^1.1.48",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.7.0"
+  }
+}

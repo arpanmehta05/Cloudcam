@@ -1,0 +1,61 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Environment and secrets
+.env
+.env.*
+.env.local
+!.env.example
+*.pem
+*.key
+
+# Scratch & temporary scripts
+scratch/
+scratch_*
+**/scratch_*
+*.scratch.*
+
+# Next.js and frontend build output
+frontend/.next/
+frontend/out/
+frontend/next-env.d.ts
+
+# JavaScript/TypeScript build output
+**/dist/
+**/build/
+**/coverage/
+*.tsbuildinfo
+
+# Python caches and virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Logs and temporary files
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+
+# Terraform local state and plans
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+
+# Local tooling and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Generated SDK/package metadata
+*.egg-info/

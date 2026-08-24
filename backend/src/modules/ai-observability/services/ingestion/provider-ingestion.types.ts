@@ -1,0 +1,81 @@
+import type { AiPricingSource, AiProvider } from "../../../../models/ai-request-log.model";
+
+export interface ExecuteOptions<T = unknown> {
+    provider: AiProvider;
+    model: string;
+    userId: string;
+    tenantId?: string;
+    workspaceId?: string;
+    environment?: string;
+    serviceName?: string;
+    endpoint?: string;
+    traceId?: string;
+    spanId?: string;
+    parentSpanId?: string;
+    sessionId?: string;
+    endUserId?: string;
+    completionStartTime?: string | Date;
+    modelParameters?: Record<string, unknown>;
+    operationName?: string;
+    inputPreview?: string;
+    outputPreview?: string;
+    promptHash?: string;
+    promptTemplateId?: string;
+    promptVersionId?: string;
+    promptName?: string;
+    promptSlug?: string;
+    promptVersion?: string;
+    promptLabel?: string;
+    promptEnvironment?: string;
+    promptState?: "draft" | "production" | "archived";
+    promptContentHash?: string;
+    tags?: string[];
+    requestFn: () => Promise<T>;
+    metadata?: Record<string, unknown>;
+}
+
+export interface ManualEventInput {
+    userId: string;
+    tenantId?: string;
+    workspaceId?: string;
+    environment?: string;
+    serviceName?: string;
+    endpoint?: string;
+    provider: AiProvider;
+    model: string;
+    requestId?: string;
+    promptTokens?: number;
+    completionTokens?: number;
+    totalTokens?: number;
+    latencyMs?: number;
+    cost?: number;
+    pricingSource?: AiPricingSource;
+    pricingEstimated?: boolean;
+    unpriced?: boolean;
+    status?: "success" | "error" | "rate_limited" | "timeout";
+    errorMessage?: string;
+    traceId?: string;
+    spanId?: string;
+    parentSpanId?: string;
+    sessionId?: string;
+    endUserId?: string;
+    completionStartTime?: string | Date;
+    modelParameters?: Record<string, unknown>;
+    operationName?: string;
+    inputPreview?: string;
+    outputPreview?: string;
+    promptHash?: string;
+    promptTemplateId?: string;
+    promptVersionId?: string;
+    promptName?: string;
+    promptSlug?: string;
+    promptVersion?: string;
+    promptLabel?: string;
+    promptEnvironment?: string;
+    promptState?: "draft" | "production" | "archived";
+    promptContentHash?: string;
+    tags?: string[];
+    metadata?: Record<string, unknown>;
+}
+
+export type PersistRecordScope = Omit<ManualEventInput, "userId" | "provider" | "model">;

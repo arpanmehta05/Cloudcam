@@ -1,0 +1,52 @@
+# Stage 1: Downloader - use a temporary stage to fetch binaries
+FROM alpine:3.19 AS downloader
+
+# Install dependencies for downloading
+RUN apk add --no-cache curl unzip
+
+# Install Terraform
+ARG TERRAFORM_VERSION=1.10.5
+RUN curl -fsSL "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" \
+  -o /tmp/terraform.zip \
+  && unzip /tmp/terraform.zip -d /usr/local/bin/ \
+  && rm /tmp/terraform.zip
+
+# Stage 2: Final Runner - the actual image used at runtime
+FROM alpine:3.19
+
+# Install minimal runtime dependencies
+# bash is required for the entrypoint script
+# ca-certificates is required for Terraform/cloud APIs; curl and jq are used for signed S3 payload/result exchange.
+# aws-cli is required for local-exec actions on live infrastructure.
+# libc6-compat & gcompat are required for compiled provider binaries.
+RUN apk add --no-cache ca-certificates bash curl jq aws-cli libc6-compat gcompat
+
+# Create non-root user for security
+RUN addgroup -S tfuser && adduser -S -G tfuser -D -h /home/tfuser -s /bin/bash tfuser
+
+# Pre-create plugin cache directory with correct ownership
+RUN mkdir -p /home/tfuser/.terraform.d/plugin-cache /plugin-cache-seed && chown -R tfuser:tfuser /home/tfuser /plugin-cache-seed
+
+# Working directory setup
+WORKDIR /workspace
+RUN chown tfuser:tfuser /workspace
+
+# Terraform Environment Variables
+ENV TF_IN_AUTOMATION=true \
+    TF_NO_COLOR=true \
+    TF_INPUT=false \
+    TF_PLUGIN_CACHE_DIR=/home/tfuser/.terraform.d/plugin-cache
+
+# Copy Terraform from downloader
+COPY --from=downloader /usr/local/bin/terraform /usr/local/bin/terraform
+
+# Copy entrypoint script
+COPY docker-entrypoint/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN sed -i 's/\r$//' /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/entrypoint.sh
+
+# Switch to non-root user
+USER tfuser
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+

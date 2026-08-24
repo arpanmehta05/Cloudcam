@@ -1,0 +1,202 @@
+export const azureOnboardingTemplate = {
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceId": {
+      "type": "string",
+      "metadata": {
+        "description": "The workspace ID to connect to CloudWatcher"
+      }
+    },
+    "tenantId": {
+      "type": "string",
+      "metadata": {
+        "description": "Active Directory Tenant ID"
+      }
+    },
+    "subscriptionId": {
+      "type": "string",
+      "metadata": {
+        "description": "Azure Subscription ID"
+      }
+    },
+    "principalId": {
+      "type": "string",
+      "metadata": {
+        "description": "Object ID of the CloudWatcher Enterprise Application (Service Principal)"
+      }
+    },
+    "webhookUrl": {
+      "type": "string",
+      "metadata": {
+        "description": "Webhook endpoint to notify connection success"
+      }
+    },
+    "webhookSecret": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Secret key to authenticate webhook callbacks"
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "centralindia",
+      "metadata": {
+        "description": "Region to deploy resources into"
+      }
+    },
+    "enableLogAnalytics": {
+      "type": "bool",
+      "defaultValue": false,
+      "metadata": {
+        "description": "Create a Log Analytics workspace for metrics/log forwarding"
+      }
+    }
+  },
+  "variables": {
+    "rgName": "Rabbittize-Integration-RG"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2021-04-01",
+      "name": "[variables('rgName')]",
+      "location": "[parameters('location')]",
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[guid(subscription().id, parameters('principalId'), 'Reader')]",
+      "properties": {
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'acdd72a7-3385-48ef-bd42-f606fba81ae7')]",
+        "principalId": "[parameters('principalId')]",
+        "principalType": "ServicePrincipal"
+      }
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[guid(subscription().id, parameters('principalId'), 'Monitoring Reader')]",
+      "properties": {
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '43d0d8ad-25c7-4714-9337-8ba259a9fe05')]",
+        "principalId": "[parameters('principalId')]",
+        "principalType": "ServicePrincipal"
+      }
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[guid(subscription().id, parameters('principalId'), 'Security Reader')]",
+      "properties": {
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '39bc4728-0917-49c7-9d2c-d95423bc2eb4')]",
+        "principalId": "[parameters('principalId')]",
+        "principalType": "ServicePrincipal"
+      }
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[guid(subscription().id, parameters('principalId'), 'Cost Management Reader')]",
+      "properties": {
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '72fafb9e-0641-4937-9268-a91bfd8191a3')]",
+        "principalId": "[parameters('principalId')]",
+        "principalType": "ServicePrincipal"
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "rgResources",
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', variables('rgName'))]",
+        "[subscriptionResourceId('Microsoft.Authorization/roleAssignments', guid(subscription().id, parameters('principalId'), 'Reader'))]",
+        "[subscriptionResourceId('Microsoft.Authorization/roleAssignments', guid(subscription().id, parameters('principalId'), 'Monitoring Reader'))]",
+        "[subscriptionResourceId('Microsoft.Authorization/roleAssignments', guid(subscription().id, parameters('principalId'), 'Security Reader'))]",
+        "[subscriptionResourceId('Microsoft.Authorization/roleAssignments', guid(subscription().id, parameters('principalId'), 'Cost Management Reader'))]"
+      ],
+      "resourceGroup": "[variables('rgName')]",
+      "properties": {
+        "mode": "Incremental",
+        "parameters": {
+          "workspaceId": { "value": "[parameters('workspaceId')]" },
+          "tenantId": { "value": "[parameters('tenantId')]" },
+          "subscriptionId": { "value": "[parameters('subscriptionId')]" },
+          "principalId": { "value": "[parameters('principalId')]" },
+          "webhookUrl": { "value": "[parameters('webhookUrl')]" },
+          "webhookSecret": { "value": "[parameters('webhookSecret')]" },
+          "location": { "value": "[parameters('location')]" },
+          "enableLogAnalytics": { "value": "[parameters('enableLogAnalytics')]" }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {
+            "workspaceId": { "type": "string" },
+            "tenantId": { "type": "string" },
+            "subscriptionId": { "type": "string" },
+            "principalId": { "type": "string" },
+            "webhookUrl": { "type": "string" },
+            "webhookSecret": { "type": "securestring" },
+            "location": { "type": "string" },
+            "enableLogAnalytics": { "type": "bool" }
+          },
+          "resources": [
+            {
+              "condition": "[parameters('enableLogAnalytics')]",
+              "type": "Microsoft.OperationalInsights/workspaces",
+              "apiVersion": "2021-12-01-preview",
+              "name": "rabbittize-log-analytics",
+              "location": "[parameters('location')]",
+              "properties": {
+                "sku": {
+                  "name": "PerGB2018"
+                },
+                "retentionInDays": 30
+              }
+            },
+            {
+              "type": "Microsoft.Resources/deploymentScripts",
+              "apiVersion": "2020-10-01",
+              "name": "rabbittizePingbackScript",
+              "location": "[parameters('location')]",
+              "kind": "AzureCLI",
+              "properties": {
+                "azCliVersion": "2.30.0",
+                "timeout": "PT5M",
+                "retentionInterval": "P1D",
+                "environmentVariables": [
+                  {
+                    "name": "WEBHOOK_URL",
+                    "value": "[parameters('webhookUrl')]"
+                  },
+                  {
+                    "name": "WEBHOOK_SECRET",
+                    "value": "[parameters('webhookSecret')]"
+                  },
+                  {
+                    "name": "WORKSPACE_ID",
+                    "value": "[parameters('workspaceId')]"
+                  },
+                  {
+                    "name": "TENANT_ID",
+                    "value": "[parameters('tenantId')]"
+                  },
+                  {
+                    "name": "SUBSCRIPTION_ID",
+                    "value": "[parameters('subscriptionId')]"
+                  },
+                  {
+                    "name": "PRINCIPAL_ID",
+                    "value": "[parameters('principalId')]"
+                  }
+                ],
+                "scriptContent": "if command -v curl >/dev/null 2>&1; then curl -f -X POST -H \"Content-Type: application/json\" -H \"x-rabbittize-secret: $WEBHOOK_SECRET\" -H \"X-Tunnel-Skip-AntiPhishing-Page: True\" -d \"{\\\"workspaceId\\\":\\\"$WORKSPACE_ID\\\",\\\"tenantId\\\":\\\"$TENANT_ID\\\",\\\"subscriptionId\\\":\\\"$SUBSCRIPTION_ID\\\",\\\"principalId\\\":\\\"$PRINCIPAL_ID\\\"}\" $WEBHOOK_URL; else python3 -c \"import urllib.request, json, os; req = urllib.request.Request(os.environ['WEBHOOK_URL'], data=json.dumps({'workspaceId': os.environ['WORKSPACE_ID'], 'tenantId': os.environ['TENANT_ID'], 'subscriptionId': os.environ['SUBSCRIPTION_ID'], 'principalId': os.environ['PRINCIPAL_ID']}).encode('utf-8'), headers={'Content-Type': 'application/json', 'x-rabbittize-secret': os.environ['WEBHOOK_SECRET'], 'X-Tunnel-Skip-AntiPhishing-Page': 'True'}, method='POST'); urllib.request.urlopen(req, timeout=15)\"; fi"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+};
