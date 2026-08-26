@@ -15,13 +15,13 @@ The web dashboard and user interface for the **Cloudcam** cloud operations, infr
 ### Prerequisites
 
 - Node.js 20 or newer
-- pnpm (recommended) or npm / yarn
+- npm
 
 ### Installation
 
 ```bash
 cd frontend
-pnpm install
+npm install
 ```
 
 ### Environment Configuration
@@ -46,17 +46,17 @@ NEXT_PUBLIC_APP_ENV=development
 Start the local development server:
 
 ```bash
-pnpm dev
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to view the application.
 
 ## Available Scripts
 
-- `pnpm dev` - Starts the Next.js development server with hot reload.
-- `pnpm build` - Creates an optimized production build.
-- `pnpm start` - Starts the Next.js production server.
-- `pnpm lint` - Runs ESLint to inspect code quality.
+- `npm run dev` - Starts the Next.js development server with hot reload.
+- `npm run build` - Creates an optimized production build.
+- `npm run start` - Starts the Next.js production server.
+- `npm run lint` - Runs ESLint to inspect code quality.
 
 ## Architecture
 

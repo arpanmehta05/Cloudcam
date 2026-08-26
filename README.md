@@ -16,17 +16,10 @@ Cloudcam is a cloud operations and AI observability platform. It provides a web 
 ## Prerequisites
 
 - Node.js 20 or newer
-- pnpm
+- npm
 - Python 3.8 or newer for the Python SDK
 - MongoDB for local backend development
 - Prometheus if metrics features are enabled
-
-Install pnpm if needed:
-
-```bash
-corepack enable
-corepack prepare pnpm@latest --activate
-```
 
 ## Local Development
 
@@ -34,10 +27,10 @@ Install dependencies independently in each Node workspace:
 
 ```bash
 cd backend
-pnpm install
+npm install
 
 cd ../frontend
-pnpm install
+npm install
 ```
 
 Create `backend/.env`. The backend uses `http://localhost:4000`, MongoDB at `mongodb://localhost:27017/rabbittize`, and Prometheus at `http://localhost:9090` by default. Set credentials and service-specific values in the environment rather than committing them.
@@ -53,11 +46,11 @@ Start the API and dashboard in separate terminals:
 ```bash
 # Terminal 1
 cd backend
-pnpm dev
+npm run dev
 
 # Terminal 2
 cd frontend
-pnpm dev
+npm run dev
 ```
 
 The dashboard is available at [http://localhost:3000](http://localhost:3000) and the API at [http://localhost:4000](http://localhost:4000).
@@ -67,18 +60,18 @@ The dashboard is available at [http://localhost:3000](http://localhost:3000) and
 ### Backend
 
 ```bash
-pnpm dev       # Start the API with watch mode
-pnpm build     # Compile TypeScript
-pnpm start     # Run the compiled API
+npm run dev       # Start the API with watch mode
+npm run build     # Compile TypeScript
+npm run start     # Run the compiled API
 ```
 
 ### Frontend
 
 ```bash
-pnpm dev       # Start Next.js development mode
-pnpm lint      # Run ESLint
-pnpm build     # Create a production build
-pnpm start     # Serve the production build
+npm run dev       # Start Next.js development mode
+npm run lint      # Run ESLint
+npm run build     # Create an optimized production build
+npm run start     # Serve the production build
 ```
 
 ### SDKs
@@ -89,7 +82,7 @@ The SDKs have their own installation and usage documentation:
 - [Python SDK](sdk/python/README.md)
 - [VPS agent](sdk/vps-agent/README.md)
 
-Build the JavaScript SDK from `sdk/js` with `pnpm install && pnpm build`. Install the Python SDK locally from `sdk/python` with `pip install .`.
+Build the JavaScript SDK from `sdk/js` with `npm install && npm run build`. Install the Python SDK locally from `sdk/python` with `pip install .`.
 
 ## Configuration and Security
 
