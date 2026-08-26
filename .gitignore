@@ -41,6 +41,9 @@ env/
 # Logs and temporary files
 *.log
 logs/
+# AWS source modules named "logs" are application code, not generated log files.
+!backend/src/modules/aws/services/logs/
+!backend/src/modules/aws/services/logs/*.ts
 tmp/
 temp/
 *.tmp
