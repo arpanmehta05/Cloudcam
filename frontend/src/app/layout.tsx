@@ -24,9 +24,9 @@ const faqs = [
       "Cloudcam is an engineering-first cloud cost optimization and observability platform. It helps engineering, DevOps, and FinOps teams monitor multi-cloud infrastructure, reduce waste, analyze AI model spend, and automate savings recommendations in real-time.",
   },
   {
-    question: "What is Cloudcam?",
+    question: "Which teams benefit from Cloudcam?",
     answer:
-      "Cloudcam is the product platform for cloud cost optimization, monitoring, and AI observability.",
+      "Cloudcam is built for engineering, DevOps, FinOps, and AI platform teams that need a shared view of cloud infrastructure, spend, and AI workload performance.",
   },
   {
     question: "How does Cloudcam help reduce cloud costs?",
@@ -181,9 +181,9 @@ export const metadata: Metadata = {
     images: ["/opengraph-image"],
   },
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: [{ url: "/Logo.svg?v=3", type: "image/svg+xml" }],
+    shortcut: "/Logo.svg?v=3",
+    apple: "/Logo.svg?v=3",
   },
 };
 
@@ -207,7 +207,12 @@ export default function RootLayout({
         className={`${sansFont.variable} min-h-screen`}
       >
         <SmoothScrollProvider>
-          <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem={false}
+            storageKey="cloudcam-theme"
+          >
             <AuthProvider>
               <RegionProvider>
                 <AuthGuard>

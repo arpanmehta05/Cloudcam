@@ -12,7 +12,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_2fr]">
         {/* brand */}
         <div>
-          <BrandMark href="/" logoClassName="h-10 w-10" titleClassName="text-base" subtitleClassName="text-[11px]" />
+          <BrandMark href="/" logoClassName="h-16 w-16" titleClassName="text-base" subtitleClassName="text-[11px]" />
           <p className="mt-4 max-w-sm text-sm leading-6 text-[#64748B]">
             Cloudcam helps engineering teams
             analyze, report on, and reduce cloud, AI, and infrastructure costs.

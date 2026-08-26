@@ -31,7 +31,7 @@ export default function LoginPage() {
 
       <div className="flex-1 flex flex-col md:flex-row w-full z-10 max-w-[1600px] mx-auto min-h-screen">
         <div className="w-full md:w-[55%] flex flex-col justify-center px-8 py-12 md:px-12 lg:px-20 xl:px-28 bg-white/40 md:bg-transparent backdrop-blur-3xl md:backdrop-blur-none">
-          <BrandMark className="mb-12" logoClassName="h-10 w-10" />
+          <BrandMark className="mb-12" logoClassName="h-16 w-16" />
           <div className="max-w-md">
             <Feature title="Cost Visibility" desc="Combine AWS, AI usage, and infrastructure costs in the same report. Create complex filters and set alerts for every resource." />
             <Feature title="AI-Powered Optimization" desc="Automatically identify idle instances and optimization opportunities. No infrastructure changes or financial commitments required." />

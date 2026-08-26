@@ -56,9 +56,9 @@ const faqs = [
       "Cloudcam is an engineering-first cloud cost optimization and observability platform. It helps engineering, DevOps, and FinOps teams monitor multi-cloud infrastructure, reduce waste, analyze AI model spend, and automate savings recommendations in real-time.",
   },
   {
-    question: "What is Cloudcam?",
+    question: "Which teams benefit from Cloudcam?",
     answer:
-      "Cloudcam is the product platform for cloud cost optimization, monitoring, and AI observability.",
+      "Cloudcam is built for engineering, DevOps, FinOps, and AI platform teams that need a shared view of cloud infrastructure, spend, and AI workload performance.",
   },
   {
     question: "How does Cloudcam help reduce cloud costs?",
@@ -177,7 +177,7 @@ export function LandingPage() {
                 const isExpanded = expandedIndex === index;
                 return (
                   <motion.article
-                    key={item.question}
+                    key={`${item.question}-${index}`}
                     variants={fadeUp}
                     className="overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-[#BFDBFE] hover:shadow-md"
                   >

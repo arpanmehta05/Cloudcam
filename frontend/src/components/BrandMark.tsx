@@ -4,7 +4,9 @@ import { cn } from "@/lib/utils";
 
 const BRAND_NAME = "Cloudcam";
 const BRAND_SUBTITLE = "By Fonder";
-const BRAND_LOGO_SRC = "/Logo.svg";
+// Bump this URL whenever the logo artwork changes so Next.js and browsers do
+// not reuse a previously optimized SVG with its old white background.
+const BRAND_LOGO_SRC = "/Logo.svg?v=3";
 
 type BrandMarkProps = {
   href?: string;
@@ -38,9 +40,9 @@ export function BrandMark({
         <Image
           src={BRAND_LOGO_SRC}
           alt="Cloudcam Logo"
-          width={64}
-          height={64}
-          className="h-[115%] w-[115%] max-w-none object-contain"
+          width={256}
+          height={256}
+          className="h-[125%] w-[125%] max-w-none object-contain"
           priority
         />
       </span>
