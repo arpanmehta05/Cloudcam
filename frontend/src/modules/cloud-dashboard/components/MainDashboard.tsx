@@ -392,7 +392,7 @@ export function MainDashboard() {
                         {selectedProvider.toUpperCase()} {selectedProvider === "azure" ? "Subscription" : selectedProvider === "gcp" ? "Project" : "Account"} Not Connected
                     </h2>
                     <p className="mt-2 max-w-md text-sm leading-6 text-[#64748B] dark:text-[#94A3B8]">
-                        {selectedProvider === "aws" && "Deploy the CloudWatcher CloudFormation stack in your AWS account to start monitoring."}
+                        {selectedProvider === "aws" && "Deploy the Cloudcam CloudFormation stack in your AWS account to start monitoring."}
                         {selectedProvider === "azure" && "Deploy the ARM onboarding template in your Azure subscription to start monitoring."}
                         {selectedProvider === "gcp" && "Set up the GCP service account integration in your GCP project to start monitoring."}
                     </p>
@@ -426,7 +426,7 @@ export function MainDashboard() {
                             {selectedProvider.toUpperCase()} fusion workspace
                         </div>
                         <h1 className="mt-3 text-2xl font-extrabold tracking-tight text-[#020617] dark:text-white sm:text-3xl">
-                            CloudWatcher Command Center
+                            Cloudcam Command Center
                         </h1>
                         <p className="mt-2 max-w-2xl text-sm font-medium leading-6 text-[#64748B] dark:text-[#94A3B8]">
                             A clean {selectedProvider.toUpperCase()}-style command surface for cost, resource, security, and AI operations.

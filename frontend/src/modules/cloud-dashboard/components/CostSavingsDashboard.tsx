@@ -334,7 +334,7 @@ export function CostSavingsDashboard() {
                     setNotice({
                         type: "warning",
                         title: "Bucket is not empty",
-                        message: "CloudWatcher blocked the delete. You can force empty and delete only after confirming the irreversible data removal.",
+                        message: "Cloudcam blocked the delete. You can force empty and delete only after confirming the irreversible data removal.",
                     });
                     return;
                 }
@@ -479,7 +479,7 @@ export function CostSavingsDashboard() {
                     <Sparkles className="mb-3 h-8 w-8 text-[#1A56DB] dark:text-[#6BA3F8] animate-pulse" />
                     <p className="text-sm font-medium">{providerCopy.shortLabel} cost optimization is not wired yet</p>
                     <p className="mt-1 max-w-md text-xs text-muted-foreground">
-                        CloudWatcher will use real {providerCopy.shortLabel} billing, inventory, and recommendation signals here when this provider capability is implemented. For now, the page is intentionally blocked so it does not show AWS recommendations for a {providerCopy.accountName}.
+                        Cloudcam will use real {providerCopy.shortLabel} billing, inventory, and recommendation signals here when this provider capability is implemented. For now, the page is intentionally blocked so it does not show AWS recommendations for a {providerCopy.accountName}.
                     </p>
                 </Card>
             </div>
@@ -550,7 +550,7 @@ export function CostSavingsDashboard() {
                             <Loader2 className="mb-3 h-6 w-6 animate-spin text-muted-foreground" />
                             <p className="text-sm font-medium">Analyzing optimization data</p>
                             <p className="mt-1 max-w-md text-xs text-muted-foreground">
-                                CloudWatcher is reading billing, inventory, and recommendation signals for the selected region.
+                                Cloudcam is reading billing, inventory, and recommendation signals for the selected region.
                             </p>
                         </Card>
                     ) : optData ? (
@@ -784,7 +784,7 @@ export function CostSavingsDashboard() {
                     <DialogHeader>
                         <DialogTitle>Record actual savings</DialogTitle>
                         <DialogDescription>
-                            Enter the realized monthly savings. CloudWatcher uses this feedback to calibrate future recommendations.
+                            Enter the realized monthly savings. Cloudcam uses this feedback to calibrate future recommendations.
                         </DialogDescription>
                     </DialogHeader>
                     {savingsRecord && (

@@ -28,7 +28,7 @@ async function sendEmailWebhook(payload: NotificationPayload): Promise<boolean> 
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         to: payload.userId, // In production: resolve userId → email via User model
-        subject: `[CloudWatcher AI] ${payload.title}`,
+        subject: `[Cloudcam AI] ${payload.title}`,
         body: payload.message,
         severity: payload.severity,
         metadata: payload.metadata,
@@ -62,7 +62,7 @@ async function sendSlackWebhook(
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        username: "CloudWatcher",
+        username: "Cloudcam",
         icon_url: "https://cdn-icons-png.flaticon.com/512/825/825590.png",
         text: `${emoji} *${payload.title}*\n${payload.message}`,
         blocks: [

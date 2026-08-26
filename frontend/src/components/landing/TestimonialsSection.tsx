@@ -9,14 +9,14 @@ const testimonials = [
   {
     tab: "Cost clarity",
     quote:
-      "CloudWatcher made cloud spend understandable for engineers, not just finance.",
+      "Cloudcam made cloud spend understandable for engineers, not just finance.",
     name: "Mira N.",
     role: "VP Cloud Services",
     company: "PBS",
     metric: "31%",
     metricLabel: "waste reduced",
     title: "Cost clarity for every engineering decision.",
-    desc: "PBS uses CloudWatcher to turn monthly cloud bills into daily engineering signals, so teams can see which workloads changed and why.",
+    desc: "PBS uses Cloudcam to turn monthly cloud bills into daily engineering signals, so teams can see which workloads changed and why.",
     products: [
       "Cost allocation",
       "Budget alerts",
@@ -54,7 +54,7 @@ const testimonials = [
     metric: "$184K",
     metricLabel: "savings found",
     title: "Savings momentum that compounds over time.",
-    desc: "Extend uses CloudWatcher to track optimization work, validate savings, and keep owners accountable after recommendations are implemented.",
+    desc: "Extend uses Cloudcam to track optimization work, validate savings, and keep owners accountable after recommendations are implemented.",
     products: [
       "Watchdog",
       "Idle resource cleanup",

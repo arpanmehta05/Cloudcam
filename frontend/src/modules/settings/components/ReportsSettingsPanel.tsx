@@ -347,7 +347,7 @@ export function ReportsSettingsPanel() {
               <div>
                 <h1 className="text-3xl font-display font-extrabold tracking-tight text-slate-950">Email Reports</h1>
                 <p className="mt-2 max-w-2xl text-base leading-7 text-slate-600">
-                  Pick the cadence and CloudWatcher sends usage, recommendations, and AI infrastructure insight emails on the next matching calendar date.
+                  Pick the cadence and Cloudcam sends usage, recommendations, and AI infrastructure insight emails on the next matching calendar date.
                 </p>
               </div>
             </div>

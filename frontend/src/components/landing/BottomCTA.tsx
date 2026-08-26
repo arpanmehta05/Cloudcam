@@ -35,7 +35,7 @@ export function BottomCTA() {
               Stop cloud cost drift today
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-[#475569]">
-              Join engineering teams using CloudWatcher to automate cloud optimization,
+              Join engineering teams using Cloudcam to automate cloud optimization,
               audit model provider spend, and drive operational accountability in minutes.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">

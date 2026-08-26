@@ -29,7 +29,7 @@ import { CliProvision } from "./AzureSettings/CliProvision";
 import { TerraformProvision } from "./AzureSettings/TerraformProvision";
 import { ManualProvision } from "./AzureSettings/ManualProvision";
 
-const BRAND_NAME = "CloudWatcher";
+const BRAND_NAME = "Cloudcam";
 
 const STEPS = [
   { title: "Setup Configuration", description: "Choose modules and monitoring options.", icon: LayoutList },

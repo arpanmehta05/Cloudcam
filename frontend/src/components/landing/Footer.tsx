@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Check } from "@/icons";
 import { BrandMark } from "@/components/BrandMark";
 
-const BRAND_NAME = "CloudWatcher";
+const BRAND_NAME = "Cloudcam";
 
 export function Footer() {
   return (
@@ -14,7 +14,7 @@ export function Footer() {
         <div>
           <BrandMark href="/" logoClassName="h-10 w-10" titleClassName="text-base" subtitleClassName="text-[11px]" />
           <p className="mt-4 max-w-sm text-sm leading-6 text-[#64748B]">
-            CloudWatcher, also known as Rabbittize, helps engineering teams
+            Cloudcam helps engineering teams
             analyze, report on, and reduce cloud, AI, and infrastructure costs.
           </p>
         </div>

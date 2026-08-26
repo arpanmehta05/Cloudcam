@@ -9,8 +9,8 @@ import { motion } from "framer-motion";
 import { Menu, X } from "@/icons";
 import { Button } from "@/components/ui/button";
 
-const BRAND_NAME = "CloudWatcher";
-const BRAND_SUBTITLE = "By Rabbitt Ai";
+const BRAND_NAME = "Cloudcam";
+const BRAND_SUBTITLE = "By Fonder";
 const BRAND_LOGO_SRC = "/Logo.svg";
 
 export type NavbarLink = {
@@ -72,7 +72,7 @@ export function Navbar({
           <span className="flex h-16 w-16 items-center justify-center overflow-visible rounded-[10px]">
             <Image
               src={BRAND_LOGO_SRC}
-              alt="CloudWatcher Logo"
+              alt="Cloudcam Logo"
               width={88}
               height={88}
               className="h-[5.25rem] w-[5.25rem] max-w-none object-contain"

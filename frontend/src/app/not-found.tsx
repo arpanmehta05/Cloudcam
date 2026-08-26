@@ -11,7 +11,7 @@ import {
 } from "@/icons";
 import { Button } from "@/components/ui/button";
 
-const BRAND_NAME = "Cloudwatcher";
+const BRAND_NAME = "Cloudcam";
 
 export default function NotFound() {
   return (
@@ -132,7 +132,7 @@ export default function NotFound() {
 
       {/* Footer Branding */}
       <div className="absolute bottom-8 text-xs font-bold tracking-[0.2em] uppercase text-[#CBD5E1]">
-        © {new Date().getFullYear()} Cloudwatcher Observability Platform
+        © {new Date().getFullYear()} Cloudcam Observability Platform
       </div>
     </main>
   );

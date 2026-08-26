@@ -211,7 +211,7 @@ export function ChatWindow({ isOpen, onClose }: ChatWindowProps) {
                         <div className="text-center py-8">
                             <MessageSquare className="w-8 h-8 text-muted-foreground/30 mx-auto mb-3" />
                             <p className="text-sm text-muted-foreground mb-3">
-                                {isDocsRoute ? "Ask about CloudWatcher docs" : "Ask about your AWS infrastructure"}
+                                {isDocsRoute ? "Ask about Cloudcam docs" : "Ask about your AWS infrastructure"}
                             </p>
                             <div className="space-y-2">
                                 {starterQuestions.map((q) => (

@@ -1,8 +1,8 @@
-export const BRAND_NAME = "Cloudwatcher";
+export const BRAND_NAME = "Cloudcam";
 export const BRAND_SITE_URL =
-  process.env.APP_URL || process.env.FRONTEND_URL || "https://cloudwatcher.rabbitt.ai";
+  process.env.APP_URL || process.env.FRONTEND_URL || "https://cloudcam.fonder.tech";
 export const SUPPORT_EMAIL =
-  process.env.SUPPORT_EMAIL || process.env.SMTP_FROM || "support@cloudwatcher.ai";
+  process.env.SUPPORT_EMAIL || process.env.SMTP_FROM || "support@cloudcam.fonder.tech";
 
 export function escapeHtml(value: unknown): string {
   return String(value ?? "")

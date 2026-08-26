@@ -2,7 +2,7 @@
 // Classifies user intent and determines what data sources to query
 
 export const CLASSIFIER_SYSTEM_PROMPT = `
-You are an intent classifier for Rabbittize, an AWS monitoring and cost optimization system.
+You are an intent classifier for Cloudcam, an AWS monitoring and cost optimization system.
 Your job is to understand what the user wants and determine what data to fetch.
 
 AVAILABLE SERVICES:

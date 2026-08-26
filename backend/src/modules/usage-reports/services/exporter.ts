@@ -79,7 +79,7 @@ export function brandedReportEmailHtml(params: {
 <body style="margin:0;padding:0;background:#f8fafc;font-family:Inter,Segoe UI,Arial,sans-serif;color:#0f172a;">
   <div style="max-width:680px;margin:28px auto;background:#ffffff;border:1px solid #dbeafe;border-radius:18px;overflow:hidden;box-shadow:0 20px 45px rgba(15,23,42,0.08);">
     <div style="padding:30px 34px;background:linear-gradient(135deg,#ffffff 0%,#eff6ff 58%,#fff7ed 100%);border-bottom:1px solid #dbeafe;">
-      <p style="margin:0 0 10px;color:${accent};font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;">CloudWatcher by Rabbitt AI</p>
+      <p style="margin:0 0 10px;color:${accent};font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;">Cloudcam by Fonder</p>
       <h1 style="margin:0;font-size:28px;line-height:1.15;color:#0f172a;">${escapeHtml(title)}</h1>
       <p style="margin:10px 0 0;color:#475569;font-size:15px;line-height:1.6;">${escapeHtml(kicker)}</p>
     </div>
@@ -281,7 +281,7 @@ export async function exportBillingReport(params: {
         sections: pdfSections,
     });
 
-    const emailSubject = `CloudWatcher ${frequency === "weekly" ? "Weekly" : "Monthly"} Usage Report`;
+    const emailSubject = `Cloudcam ${frequency === "weekly" ? "Weekly" : "Monthly"} Usage Report`;
     const emailHtml = brandedReportEmailHtml({
         name,
         title: "Cloud Usage Report",
@@ -304,7 +304,7 @@ export async function exportBillingReport(params: {
     const topServicesText = topServices.slice(0, 10).map((item: any) => `• *${item.service || item.name || "Service"}*: ${formatMoney(item.amount ?? item.cost ?? item.total ?? 0, item.unit || "USD")} (${item.provider.toUpperCase()})`).join("\n");
 
     const slackPayload = {
-        username: "CloudWatcher",
+        username: "Cloudcam",
         icon_url: "https://cdn-icons-png.flaticon.com/512/825/825590.png",
         text: `📊 Cloud Usage Report (${frequency})`,
         blocks: [
@@ -319,7 +319,7 @@ export async function exportBillingReport(params: {
                 type: "section",
                 text: {
                     type: "mrkdwn",
-                    text: `*Hi ${name},* here is your synced cloud usage report from CloudWatcher.`
+                    text: `*Hi ${name},* here is your synced cloud usage report from Cloudcam.`
                 }
             },
             {
@@ -472,7 +472,7 @@ export async function exportInsightReport(params: {
         sections: pdfSections,
     });
 
-    const emailSubject = `CloudWatcher AI Infrastructure Insights`;
+    const emailSubject = `Cloudcam AI Infrastructure Insights`;
     const emailHtml = brandedReportEmailHtml({
         name,
         title: "AI Infrastructure Insights",
@@ -502,7 +502,7 @@ export async function exportInsightReport(params: {
         : "• No optimizations found.";
 
     const slackPayload = {
-        username: "CloudWatcher",
+        username: "Cloudcam",
         icon_url: "https://cdn-icons-png.flaticon.com/512/825/825590.png",
         text: `💡 AI Infrastructure Insights (${frequency})`,
         blocks: [
@@ -517,7 +517,7 @@ export async function exportInsightReport(params: {
                 type: "section",
                 text: {
                     type: "mrkdwn",
-                    text: `*Hi ${name},* here is your synced AI insights report from CloudWatcher.`
+                    text: `*Hi ${name},* here is your synced AI insights report from Cloudcam.`
                 }
             },
             {

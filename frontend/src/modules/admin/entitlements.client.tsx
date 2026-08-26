@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { authFetchJson } from "@/lib/auth-fetch";
 import { ArrowLeft, ArrowRight, Lock, Mail, ShieldCheck } from "@/icons";
 
-const SUPPORT_EMAIL = "support@rabbitt.ai";
+const SUPPORT_EMAIL = "support@cloudcam.fonder.tech";
 
 interface FeatureAccessMeta {
   name: string;
@@ -31,7 +31,7 @@ const FALLBACK_FEATURE_ACCESS: Record<string, FeatureAccessMeta> = {
   core_monitoring: {
     name: "Core Monitoring",
     description: "Baseline infrastructure health, inventory, and resource visibility.",
-    lockedDescription: "Core Monitoring is included with every active CloudWatcher plan.",
+    lockedDescription: "Core Monitoring is included with every active Cloudcam plan.",
     requiredPlanKey: "free",
   },
   cost_explorer: {
@@ -139,7 +139,7 @@ function featureAccessFor(
     entitlements?.featureAccess?.[feature] ||
     FALLBACK_FEATURE_ACCESS[feature] || {
       name: featureLabel,
-      description: "This capability is managed by your CloudWatcher plan.",
+      description: "This capability is managed by your Cloudcam plan.",
       lockedDescription: "Contact support to enable this capability for your workspace.",
       requiredPlanKey: null,
     }
@@ -162,7 +162,7 @@ export function FeatureLockModal({
   const subject = encodeURIComponent(`Unlock ${meta.name}`);
   const body = encodeURIComponent(
     [
-      `Hi CloudWatcher team,`,
+      `Hi Cloudcam team,`,
       ``,
       `Please help us unlock ${meta.name}.`,
       `Tenant: ${entitlements?.tenantId || "unknown"}`,

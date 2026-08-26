@@ -160,7 +160,7 @@ function drawHeader(doc: PDFKit.PDFDocument) {
     doc.roundedRect(M, 30, 30, 30, 7).fill(COLORS.blueSoft);
     doc.circle(M + 15, 45, 7).fillColor(COLORS.blue).fill();
   }
-  doc.font("Helvetica-Bold").fontSize(14).fillColor(COLORS.ink).text("CloudWatcher", textX, 32);
+  doc.font("Helvetica-Bold").fontSize(14).fillColor(COLORS.ink).text("Cloudcam", textX, 32);
   doc.font("Helvetica").fontSize(7.5).fillColor(COLORS.muted).text("Agent Harness Audit · by Rabbitt AI", textX + 1, 49);
 }
 
@@ -272,7 +272,7 @@ export async function renderCloudWatcherReportPdf(report: NonNullable<ReportDeta
 
   // ── score integrity ──
   if (criticalGaps.length || scoreCaps.length || doNotBuild.length) {
-    section(doc, "Score Integrity", "CloudWatcher fails closed — a missing critical control caps the score regardless of other passes.");
+    section(doc, "Score Integrity", "Cloudcam fails closed — a missing critical control caps the score regardless of other passes.");
     if (criticalGaps.length) {
       subSection(doc, "Critical gaps driving the cap");
       bullets(doc, criticalGaps, "None recorded.");
@@ -458,7 +458,7 @@ export async function renderCloudWatcherReportPdf(report: NonNullable<ReportDeta
     doc.switchToPage(i);
     const savedBottom = doc.page.margins.bottom;
     doc.page.margins.bottom = 0;
-    doc.font("Helvetica").fontSize(7).fillColor(COLORS.muted).text(`CloudWatcher Agent Watcher  ·  ${report.report_id}  ·  Page ${i + 1} of ${range.count}`, M, doc.page.height - 30, {
+    doc.font("Helvetica").fontSize(7).fillColor(COLORS.muted).text(`Cloudcam Agent Watcher  ·  ${report.report_id}  ·  Page ${i + 1} of ${range.count}`, M, doc.page.height - 30, {
       width: W,
       align: "center",
       lineBreak: false,

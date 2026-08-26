@@ -166,10 +166,10 @@ export function DefaultAlarmsModal({
   const alarmProviderLabel = getProviderAlarmLabel(selectedProvider);
   const notificationHelp =
     selectedProvider === "azure"
-      ? "CloudWatcher does not create an Action Group for you. Enter an Action Group resource ID from your Azure subscription so Azure Monitor can publish alert notifications."
+      ? "Cloudcam does not create an Action Group for you. Enter an Action Group resource ID from your Azure subscription so Azure Monitor can publish alert notifications."
       : selectedProvider === "gcp"
-        ? "CloudWatcher does not create a notification channel for you. Enter a Cloud Monitoring notification channel ID from your GCP project so alert policies can publish notifications."
-        : "CloudWatcher does not create an SNS topic for you. Enter a topic ARN from your AWS account so CloudWatch can publish alarm notifications.";
+        ? "Cloudcam does not create a notification channel for you. Enter a Cloud Monitoring notification channel ID from your GCP project so alert policies can publish notifications."
+        : "Cloudcam does not create an SNS topic for you. Enter a topic ARN from your AWS account so CloudWatch can publish alarm notifications.";
 
   return createPortal(
     <div className="fixed inset-0 z-[100] flex items-start justify-center p-4 overflow-y-auto bg-slate-950/60 backdrop-blur-md animate-in fade-in duration-300 py-12">
@@ -418,7 +418,7 @@ export function DefaultAlarmsModal({
           <div className="flex items-center gap-2">
             <Shield className="w-4 h-4 text-emerald-500" />
             <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
-              Signed off by Cloud-Watcher
+              Signed off by Cloudcam
             </span>
           </div>
 

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "CloudWatcher cloud cost optimization and monitoring platform";
+export const alt = "Cloudcam cloud cost optimization and monitoring platform";
 export const size = {
   width: 1200,
   height: 630,
@@ -42,8 +42,8 @@ export default function Image() {
             C
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontSize: "44px", fontWeight: 800 }}>CloudWatcher</div>
-            <div style={{ fontSize: "22px", color: "#475569" }}>also known as Rabbittize</div>
+            <div style={{ fontSize: "44px", fontWeight: 800 }}>Cloudcam</div>
+            <div style={{ fontSize: "22px", color: "#475569" }}>By Fonder</div>
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>

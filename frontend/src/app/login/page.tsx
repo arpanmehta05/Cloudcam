@@ -35,14 +35,14 @@ export default function LoginPage() {
           <div className="max-w-md">
             <Feature title="Cost Visibility" desc="Combine AWS, AI usage, and infrastructure costs in the same report. Create complex filters and set alerts for every resource." />
             <Feature title="AI-Powered Optimization" desc="Automatically identify idle instances and optimization opportunities. No infrastructure changes or financial commitments required." />
-            <Feature title="Secure Connection" desc="CloudWatcher uses read-only service accounts to access cost data cleanly and securely, ensuring compliance with DPDP guardrails." />
+            <Feature title="Secure Connection" desc="Cloudcam uses read-only service accounts to access cost data cleanly and securely, ensuring compliance with DPDP guardrails." />
           </div>
           <div className="mt-14 max-w-[440px] rounded-[20px] border border-[#E2E8F0] bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hidden md:block relative z-20">
             <div className="flex items-center gap-3 mb-4">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#1A56DB] to-[#06B6D4] text-white font-bold shadow-inner">MN</div>
               <div><p className="text-sm font-extrabold text-[#0F172A]">Mira N.</p><p className="text-xs font-semibold text-[#64748B]">VP Cloud Services at PBS</p></div>
             </div>
-            <p className="text-[14px] leading-[1.65] text-[#475569]">"CloudWatcher has already helped us make our AWS spend natively understandable for engineers. The best part is we see AI costs and alerts in the same workflow."</p>
+            <p className="text-[14px] leading-[1.65] text-[#475569]">"Cloudcam has already helped us make our AWS spend natively understandable for engineers. The best part is we see AI costs and alerts in the same workflow."</p>
           </div>
         </div>
 

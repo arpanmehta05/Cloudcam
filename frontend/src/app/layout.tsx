@@ -13,30 +13,30 @@ const sansFont = Inter({
   variable: "--font-inter",
 });
 
-const BRAND_NAME = "CloudWatcher";
-const BRAND_SUBTITLE = "By Rabbitt Ai";
-const SITE_URL = "https://cloudwatcher.rabbitt.ai";
+const BRAND_NAME = "Cloudcam";
+const BRAND_SUBTITLE = "By Fonder";
+const SITE_URL = "https://cloudcam.fonder.tech";
 
 const faqs = [
   {
-    question: "What is CloudWatcher?",
+    question: "What is Cloudcam?",
     answer:
-      "CloudWatcher is an engineering-first cloud cost optimization and observability platform. It helps engineering, DevOps, and FinOps teams monitor multi-cloud infrastructure, reduce waste, analyze AI model spend, and automate savings recommendations in real-time.",
+      "Cloudcam is an engineering-first cloud cost optimization and observability platform. It helps engineering, DevOps, and FinOps teams monitor multi-cloud infrastructure, reduce waste, analyze AI model spend, and automate savings recommendations in real-time.",
   },
   {
-    question: "Is CloudWatcher the same product as Rabbittize?",
+    question: "What is Cloudcam?",
     answer:
-      "Yes. CloudWatcher is the official product platform name, and it is hosted at the rabbitt.ai domain. The platform has been upgraded and fully optimized to support legacy Rabbittize integrations alongside all new CloudWatcher FinOps capabilities.",
+      "Cloudcam is the product platform for cloud cost optimization, monitoring, and AI observability.",
   },
   {
-    question: "How does CloudWatcher help reduce cloud costs?",
+    question: "How does Cloudcam help reduce cloud costs?",
     answer:
-      "CloudWatcher continuously scans your cloud infrastructure for idle databases, unattached storage, and oversized instances. It then provides actionable, safe optimization recommendations (like right-sizing and reservations) with built-in Terraform previews and simulation dry-runs.",
+      "Cloudcam continuously scans your cloud infrastructure for idle databases, unattached storage, and oversized instances. It then provides actionable, safe optimization recommendations (like right-sizing and reservations) with built-in Terraform previews and simulation dry-runs.",
   },
   {
-    question: "Who should use CloudWatcher?",
+    question: "Who should use Cloudcam?",
     answer:
-      "CloudWatcher is built for modern engineering teams, DevOps engineers, and FinOps leaders who want cost visibility and optimization workflows integrated directly into their existing developer workflows, rather than locked inside isolated finance tools.",
+      "Cloudcam is built for modern engineering teams, DevOps engineers, and FinOps leaders who want cost visibility and optimization workflows integrated directly into their existing developer workflows, rather than locked inside isolated finance tools.",
   },
 ];
 
@@ -46,18 +46,17 @@ const structuredData = [
     "@type": "SoftwareApplication",
     "@id": `${SITE_URL}/#software`,
     name: BRAND_NAME,
-    alternateName: ["Rabbittize", "Rabbittize CloudWatcher"],
     url: `${SITE_URL}/`,
     applicationCategory: "BusinessApplication",
     applicationSubCategory: "Cloud cost management software",
     operatingSystem: "Web",
     description:
-      "CloudWatcher, also known as Rabbittize, is a cloud cost intelligence platform for AWS cost optimization, multicloud monitoring, AI observability, simulations, and engineering-led FinOps workflows.",
+      "Cloudcam is a cloud cost intelligence platform for AWS cost optimization, multicloud monitoring, AI observability, simulations, and engineering-led FinOps workflows.",
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
-      description: "Free signup available for teams evaluating CloudWatcher.",
+      description: "Free signup available for teams evaluating Cloudcam.",
     },
     featureList: [
       "AWS cost optimization software",
@@ -71,7 +70,6 @@ const structuredData = [
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
       name: BRAND_NAME,
-      alternateName: "Rabbittize",
     },
   },
   {
@@ -79,18 +77,16 @@ const structuredData = [
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
     name: BRAND_NAME,
-    alternateName: "Rabbittize",
     url: `${SITE_URL}/`,
     logo: `${SITE_URL}/Logo.svg`,
     description:
-      "CloudWatcher is a cloud cost management, multicloud monitoring, and AI observability platform by Rabbitt Ai.",
+      "Cloudcam is a cloud cost management, multicloud monitoring, and AI observability platform by Fonder.",
   },
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     name: BRAND_NAME,
-    alternateName: "Rabbittize",
     url: `${SITE_URL}/`,
     publisher: {
       "@id": `${SITE_URL}/#organization`,
@@ -118,12 +114,10 @@ export const metadata: Metadata = {
     template: `%s | ${BRAND_NAME}`,
   },
   description:
-    `${BRAND_NAME}, also known as Rabbittize, is a cloud cost intelligence platform by ${BRAND_SUBTITLE.replace("By ", "")} for AWS cost optimization, multicloud monitoring, AI observability, simulations, and engineering-led FinOps workflows.`,
+    `${BRAND_NAME} is a cloud cost intelligence platform by ${BRAND_SUBTITLE.replace("By ", "")} for AWS cost optimization, multicloud monitoring, AI observability, simulations, and engineering-led FinOps workflows.`,
   keywords: [
-    "CloudWatcher",
-    "Rabbittize",
-    "CloudWatcher AWS",
-    "Rabbittize AWS",
+    "Cloudcam",
+    "Cloudcam AWS",
     "AWS cost management",
     "AWS cost optimization software",
     "cloud cost optimization",
@@ -169,13 +163,13 @@ export const metadata: Metadata = {
     siteName: BRAND_NAME,
     title: `${BRAND_NAME} | Cloud Cost Optimization and Multicloud Monitoring`,
     description:
-      "CloudWatcher, also known as Rabbittize, combines cloud cost optimization, multicloud monitoring, AI observability, simulations, and FinOps workflows in one platform.",
+      "Cloudcam combines cloud cost optimization, multicloud monitoring, AI observability, simulations, and FinOps workflows in one platform.",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "CloudWatcher cloud cost optimization and monitoring platform",
+        alt: "Cloudcam cloud cost optimization and monitoring platform",
       },
     ],
   },
@@ -183,7 +177,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${BRAND_NAME} | Cloud Cost Optimization and Multicloud Monitoring`,
     description:
-      "CloudWatcher, also known as Rabbittize, helps engineering teams reduce cloud spend, monitor infrastructure, and trace AI costs.",
+      "Cloudcam helps engineering teams reduce cloud spend, monitor infrastructure, and trace AI costs.",
     images: ["/opengraph-image"],
   },
   icons: {

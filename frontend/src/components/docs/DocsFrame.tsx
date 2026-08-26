@@ -8,8 +8,8 @@ import { DocsDesktopNav, DocsMobileNav } from "@/components/docs/DocsNav.client"
 import { DocsReveal, DocsRevealSection } from "@/components/docs/DocsMotion.client";
 import type { DocsPage, DocsSection } from "@/lib/docs-content";
 
-const BRAND_NAME = "CloudWatcher";
-const BRAND_SUBTITLE = "By Rabbitt Ai";
+const BRAND_NAME = "Cloudcam";
+const BRAND_SUBTITLE = "By Fonder";
 
 const docsHeaderLinks = [
   { label: "Home", href: "/" },

@@ -59,7 +59,7 @@ function getEmailHtml(email: string) {
           <tr>
             <td style="padding:30px 32px;color:#334155;font-size:15px;line-height:1.7;">
               <p style="margin:0 0 16px;">Hello,</p>
-              <p style="margin:0 0 16px;">We are introducing official CloudWatcher pricing plans to support our growing feature set. As part of this update, your workspace has been transitioned to our standard <strong>Free Plan</strong>.</p>
+              <p style="margin:0 0 16px;">We are introducing official Cloudcam pricing plans to support our growing feature set. As part of this update, your workspace has been transitioned to our standard <strong>Free Plan</strong>.</p>
               
               <h3 style="color:#0f172a;font-size:16px;font-weight:700;margin:24px 0 12px;">What is included in the Free Plan?</h3>
               <p style="margin:0 0 16px;">The Free plan includes baseline infrastructure health, inventory, and basic resource visibility with core monitoring.</p>
@@ -70,7 +70,7 @@ function getEmailHtml(email: string) {
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin:24px 0;">
                 <tr>
                   <td align="center">
-                    <a href="https://www.cloudwatcher.rabbitt.ai/" style="display:inline-block;padding:12px 24px;background:#1a56db;color:#ffffff;text-decoration:none;font-weight:700;border-radius:8px;font-size:14px;">View Plans &amp; Pricing</a>
+                    <a href="https://cloudcam.fonder.tech/" style="display:inline-block;padding:12px 24px;background:#1a56db;color:#ffffff;text-decoration:none;font-weight:700;border-radius:8px;font-size:14px;">View Plans &amp; Pricing</a>
                   </td>
                 </tr>
               </table>
@@ -80,8 +80,8 @@ function getEmailHtml(email: string) {
           </tr>
           <tr>
             <td style="padding:18px 32px;background:#f8fafc;border-top:1px solid #e2e8f0;color:#64748b;font-size:12px;line-height:1.6;">
-              <p style="margin:0;">You are receiving this operational email because you have an active CloudWatcher account under: <strong>${email}</strong></p>
-              <p style="margin:12px 0 0;">&copy; 2026 CloudWatcher. <a href="https://cloudwatcher.rabbitt.ai" style="color:#1a56db;text-decoration:none;">cloudwatcher.rabbitt.ai</a></p>
+              <p style="margin:0;">You are receiving this operational email because you have an active Cloudcam account under: <strong>${email}</strong></p>
+              <p style="margin:12px 0 0;">&copy; 2026 Cloudcam. <a href="https://cloudcam.fonder.tech" style="color:#1a56db;text-decoration:none;">cloudcam.fonder.tech</a></p>
             </td>
           </tr>
         </table>

@@ -89,7 +89,7 @@ export default function ServicesPage() {
                     <div>
                         <div className="inline-flex items-center gap-2 rounded-full border border-[#DBEAFE] bg-white px-3 py-1 text-xs font-extrabold text-[#1A56DB] shadow-sm dark:border-[#1D4ED8]/50 dark:bg-[#10213A] dark:text-[#6BA3F8]">
                             <Sparkles className="h-3.5 w-3.5" />
-                            CloudWatcher service map
+                            Cloudcam service map
                         </div>
                         <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-[#020617] dark:text-white">
                             All services

@@ -148,7 +148,7 @@ const phases = [
   },
   {
     eyebrow: "THE FIX",
-    heading: "CloudWatcher identifies waste and optimizes usage in real-time",
+    heading: "Cloudcam identifies waste and optimizes usage in real-time",
     description:
       "AI-powered detection surfaces idle resources, rightsizing opportunities, and budget overruns — then routes fixes to the right owners.",
     path: stabilizePath(),

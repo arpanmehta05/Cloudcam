@@ -13,7 +13,7 @@ export function buildCheckPrompt(
   const rname = reportName && reportName.trim() ? reportName.trim() : "system_context_active";
   const aname = agentName && agentName.trim() ? agentName.trim() : "v2.4.0_enterprise_hardened";
 
-  return `You are auditing YOURSELF for CloudWatcher Agent Watcher.
+  return `You are auditing YOURSELF for Cloudcam Agent Watcher.
 Do NOT ask the user what they are building, where their code is, or what to test.
 Do NOT do a lightweight prompt test and call it done.
 
@@ -21,7 +21,7 @@ Fetch and follow this orchestrator skill exactly. It requires a strict AI Agent 
 Research, Recommendation, and Roadmap audit before any score-worthy report is submitted.
 You must inspect your real codebase/runtime, identify all AI/agent surfaces, audit the
 surrounding harness, create docs/ai-agent-harness-report.md when you can write files,
-run the selected CloudWatcher probes, and submit the final evidence JSON.
+run the selected Cloudcam probes, and submit the final evidence JSON.
 
 The audit must clearly separate:
   - what currently exists,

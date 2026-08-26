@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl = "https://cloudwatcher.rabbitt.ai";
+const siteUrl = "https://cloudcam.fonder.tech";
 
 export default function robots(): MetadataRoute.Robots {
   return {

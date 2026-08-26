@@ -173,7 +173,7 @@ export function getChecklistItems(
             activeJob.accessConfig?.username ||
             "detected"
           } and ${targetHost}.`
-        : "Command is shown with a target IP placeholder until CloudWatcher records the target address.",
+        : "Command is shown with a target IP placeholder until Cloudcam records the target address.",
       state: targetHost ? "done" : "pending",
     },
     {

@@ -37,13 +37,13 @@ export async function testSlackNotificationHandler(req: Request, res: Response):
       return;
     }
 
-    let text = "🧪 Test connection from CloudWatcher! Notifications are successfully connected.";
+    let text = "🧪 Test connection from Cloudcam! Notifications are successfully connected.";
     let blocks = [
       {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: "🧪 *Test connection from CloudWatcher!*\nYour Slack webhook is successfully configured to receive notifications from CloudWatcher.",
+          text: "🧪 *Test connection from Cloudcam!*\nYour Slack webhook is successfully configured to receive notifications from Cloudcam.",
         },
       },
       {
@@ -58,7 +58,7 @@ export async function testSlackNotificationHandler(req: Request, res: Response):
     ];
 
     if (type === "weekly_summary") {
-      text = "ℹ️ Test weekly summary preview from CloudWatcher!";
+      text = "ℹ️ Test weekly summary preview from Cloudcam!";
       blocks = [
         {
           type: "section",
@@ -83,7 +83,7 @@ export async function testSlackNotificationHandler(req: Request, res: Response):
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        username: "CloudWatcher",
+        username: "Cloudcam",
         icon_url: "https://cdn-icons-png.flaticon.com/512/825/825590.png",
         text,
         blocks,

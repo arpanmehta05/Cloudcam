@@ -332,7 +332,7 @@ export function Sidebar() {
             >
               <div className="space-y-2">
                 {/* "Back to Overview" icon at the top when collapsed */}
-                {title !== "CloudWatcher" && (
+                {title !== "Cloudcam" && (
                   <Link
                     href="/dashboard"
                     className="flex h-11 w-11 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-[#64748B] hover:border-blue-300 hover:bg-blue-50 hover:text-[#1A56DB] dark:border-slate-800 dark:bg-[#07111F]/50 dark:text-[#CBD5E1] dark:hover:border-blue-950/40 dark:hover:text-[#6BA3F8] transition duration-200 mb-3 hover:-translate-x-0.5"
@@ -401,7 +401,7 @@ export function Sidebar() {
             >
               <div className="space-y-5">
                 {/* "Back to Overview" link at the top of items */}
-                {title !== "CloudWatcher" && (
+                {title !== "Cloudcam" && (
                   <Link
                     href="/dashboard"
                     className="mb-4 flex items-center gap-2 rounded-lg border border-slate-100 bg-slate-50/50 px-3 py-2 text-xs font-bold text-[#64748B] hover:border-blue-200 hover:bg-blue-50/30 hover:text-[#1A56DB] dark:border-slate-800/50 dark:bg-slate-900/20 dark:text-[#CBD5E1] dark:hover:border-blue-900/50 dark:hover:bg-blue-950/20 dark:hover:text-[#6BA3F8] transition duration-200 group"

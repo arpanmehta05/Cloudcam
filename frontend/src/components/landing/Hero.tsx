@@ -20,7 +20,7 @@ import {
 } from "@/icons";
 import { Button } from "@/components/ui/button";
 
-const BRAND_NAME = "CloudWatcher";
+const BRAND_NAME = "Cloudcam";
 const BRAND_LOGO_SRC = "/Logo.svg";
 
 /* ── animation variants ─────────────────────────────────────── */
@@ -47,7 +47,7 @@ function DashboardMockup() {
       href: "/dashboard",
       icon: Gauge,
       kicker: "Command center",
-      title: "CloudWatcher Overview",
+      title: "Cloudcam Overview",
       description: "A live-style workspace for owned cloud, AI, cost, and security workflows.",
       stats: [
         ["Monthly spend", "$1.23M", "+3.5%"],
@@ -210,7 +210,7 @@ function DashboardMockup() {
             <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-md">
               <Image
                 src={BRAND_LOGO_SRC}
-                alt="CloudWatcher Logo"
+                alt="Cloudcam Logo"
                 width={44}
                 height={44}
                 className="h-11 w-11 object-contain"
@@ -499,7 +499,7 @@ export function Hero() {
             variants={fadeUp}
             className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#475569] sm:text-lg"
           >
-            CloudWatcher unites multi-cloud monitoring, cloud cost optimization,
+            Cloudcam unites multi-cloud monitoring, cloud cost optimization,
             and multi-provider AI observability into a single, developer-first FinOps
             workspace. Spot anomalies, right-size workloads, and trace LLM usage
             costs in real time before your budget drifts.

@@ -28,7 +28,7 @@ import { cn } from "@/lib/utils";
 import { useGcpSettings } from "../hooks/useCloudSettings";
 import { ProviderConnectionTabs } from "./ProviderConnectionTabs";
 
-const BRAND_NAME = "CloudWatcher";
+const BRAND_NAME = "Cloudcam";
 
 const STEPS = [
   {
@@ -522,7 +522,7 @@ export function GcpSettingsPanel() {
                             id="manualProjectId"
                             value={manualProjectId}
                             onChange={e => setManualProjectId(e.target.value)}
-                            placeholder="e.g. cloudwatcher-production"
+                            placeholder="e.g. cloudcam-production"
                             className="text-xs"
                           />
                         </div>
@@ -532,7 +532,7 @@ export function GcpSettingsPanel() {
                             id="manualClientEmail"
                             value={manualClientEmail}
                             onChange={e => setManualClientEmail(e.target.value)}
-                            placeholder="e.g. integration@cloudwatcher-production.iam.gserviceaccount.com"
+                            placeholder="e.g. integration@cloudcam-production.iam.gserviceaccount.com"
                             className="text-xs"
                           />
                         </div>

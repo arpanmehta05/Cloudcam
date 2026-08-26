@@ -631,7 +631,7 @@ export function ActionsDashboard() {
                       </time>
                       <p className="mt-1 text-[16px] leading-6 text-[#555b65]">
                         <span className="font-extrabold text-[#2f343b]">
-                          CloudWatcher.
+                          Cloudcam.
                         </span>{" "}
                         {actionVerb(action)} {target}
                         {action.targets?.[0]?.region

@@ -69,7 +69,7 @@ export async function beginTotpSetup(userId: string): Promise<{
   user.twoFactorTotpSecret = null;
   await user.save();
 
-  const issuer = "CloudWatcher";
+  const issuer = "Cloudcam";
   const label = `${issuer}:${user.email || user.username || "TeamUser"}`;
   const otpauthUrl = `otpauth://totp/${encodeURIComponent(
     label,

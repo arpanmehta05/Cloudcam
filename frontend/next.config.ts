@@ -4,16 +4,18 @@ import path from "path";
 // Resolve environment: prefer NEXT_PUBLIC_APP_ENV (set on Amplify), fall back to NODE_ENV.
 const appEnv = process.env.NEXT_PUBLIC_APP_ENV || process.env.NODE_ENV || "development";
 
-// Allow a direct backend URL override (useful for staging / preview environments
-// where the URL is injected as a build-time Amplify env var).
+// BACKEND_URL remains server-side so browser API calls stay same-origin at /api/*.
 // Otherwise derive it from appEnv.
 function resolveBackendUrl(): string {
+  if (process.env.BACKEND_URL) {
+    return process.env.BACKEND_URL.replace(/\/+$/, "");
+  }
   if (process.env.NEXT_PUBLIC_API_BASE_URL) {
     // Strip trailing slash so destination paths compose correctly.
     return process.env.NEXT_PUBLIC_API_BASE_URL.replace(/\/+$/, "");
   }
-  if (appEnv === "production") return "https://rabbitize-api.rabbitt.ai";
-  if (appEnv === "staging")    return "http://stagingrabbitt.duckdns.org";
+  if (appEnv === "production") return "https://cloudcam.server.fonder.tech";
+  if (appEnv === "staging")    return "http://localhost:4000";
   return "http://localhost:4000";
 }
 

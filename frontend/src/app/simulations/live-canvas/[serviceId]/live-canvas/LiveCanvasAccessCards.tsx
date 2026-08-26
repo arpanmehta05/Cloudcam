@@ -47,7 +47,7 @@ export function LiveCanvasAccessCards({
             <span className="text-xs font-bold text-foreground">HTTP Endpoint</span>
           </div>
           <p className="text-[10px] text-muted-foreground leading-relaxed">
-            Open the live VM over HTTP. For CloudWatcher-launched app hosts this should hit the nginx reverse proxy on port 80.
+            Open the live VM over HTTP. For Cloudcam-launched app hosts this should hit the nginx reverse proxy on port 80.
           </p>
           <div className="relative flex items-center justify-between rounded-lg bg-slate-950 border border-slate-800 px-3 py-2.5 font-mono text-[10px] text-slate-100 select-all break-all pr-20">
             <span>{httpUrl}</span>

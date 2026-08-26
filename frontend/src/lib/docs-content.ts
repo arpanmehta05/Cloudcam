@@ -108,7 +108,7 @@ const PRODUCT_FEATURES = [
 ];
 
 const APP_SURFACES = [
-  "Landing page: explains CloudWatcher, cloud cost optimization, multicloud monitoring, AI observability, infrastructure simulations, integrations, savings, and product entry points.",
+  "Landing page: explains Cloudcam, cloud cost optimization, multicloud monitoring, AI observability, infrastructure simulations, integrations, savings, and product entry points.",
   "Signup and verification: account creation, signup verification, login handoff, and protected access after verification.",
   "Login and 2FA: email/password login, two-factor verification, resend flow, recovery, forgot password, reset password, and first-login password reset.",
   "Dashboard: consolidated provider overview for spend, health, resources, alerts, and operational status.",
@@ -181,25 +181,25 @@ const AI_QUALITY_SURFACES = [
 ];
 
 const SERVICE_CONFIGURATION_REFERENCE = [
-  "GitHub Repository: used for application bootstrap. Configure Git URL, branch, optional token, project type, runtime, build command, start command, app port, frontend directory, backend directory, API path, and backend port. CloudWatcher uses it to pull code and prepare a deployment plan.",
-  "Docker Hub: used for container-based bootstrap. Configure repository, tag, username, password, app port, and container port. CloudWatcher uses it to pull or reference an image for a cloud deployment flow.",
-  "AWS EC2 Instance: used for virtual machines. Configure instance type, count, region, AMI, key name, instance name, admin username, VPC ID, subnet ID, and security group. CloudWatcher turns this into compute infrastructure and can estimate, deploy, inspect, and clean it up in simulations.",
-  "AWS S3 Bucket: used for object storage. Configure bucket name, region, versioning, public access, lifecycle rule, and policy. CloudWatcher uses it for storage architecture, cost estimation, Terraform generation, and live inventory where connected.",
-  "AWS RDS Database: used for managed relational databases. Configure engine, engine version, instance class, Multi-AZ, storage GB, storage type, database name, username, port, and public access. CloudWatcher uses these fields to build database Terraform and evaluate database cost/risk.",
-  "AWS Lambda Function: used for serverless compute. Configure runtime, handler, memory MB, timeout seconds, function name, environment, and code. CloudWatcher uses it for serverless simulations, live inspection, and Lambda code viewing where supported.",
-  "AWS DynamoDB Table: used for NoSQL data. Configure table name, billing mode, hash key, hash key type, and region. CloudWatcher uses it for architecture planning and billing-aware simulation.",
-  "AWS API Gateway: used for managed APIs. Configure name, protocol type, endpoint type, and region. CloudWatcher uses it to model API entry points and connect serverless or backend workloads.",
+  "GitHub Repository: used for application bootstrap. Configure Git URL, branch, optional token, project type, runtime, build command, start command, app port, frontend directory, backend directory, API path, and backend port. Cloudcam uses it to pull code and prepare a deployment plan.",
+  "Docker Hub: used for container-based bootstrap. Configure repository, tag, username, password, app port, and container port. Cloudcam uses it to pull or reference an image for a cloud deployment flow.",
+  "AWS EC2 Instance: used for virtual machines. Configure instance type, count, region, AMI, key name, instance name, admin username, VPC ID, subnet ID, and security group. Cloudcam turns this into compute infrastructure and can estimate, deploy, inspect, and clean it up in simulations.",
+  "AWS S3 Bucket: used for object storage. Configure bucket name, region, versioning, public access, lifecycle rule, and policy. Cloudcam uses it for storage architecture, cost estimation, Terraform generation, and live inventory where connected.",
+  "AWS RDS Database: used for managed relational databases. Configure engine, engine version, instance class, Multi-AZ, storage GB, storage type, database name, username, port, and public access. Cloudcam uses these fields to build database Terraform and evaluate database cost/risk.",
+  "AWS Lambda Function: used for serverless compute. Configure runtime, handler, memory MB, timeout seconds, function name, environment, and code. Cloudcam uses it for serverless simulations, live inspection, and Lambda code viewing where supported.",
+  "AWS DynamoDB Table: used for NoSQL data. Configure table name, billing mode, hash key, hash key type, and region. Cloudcam uses it for architecture planning and billing-aware simulation.",
+  "AWS API Gateway: used for managed APIs. Configure name, protocol type, endpoint type, and region. Cloudcam uses it to model API entry points and connect serverless or backend workloads.",
   "AWS ECS Cluster: used for container services. Configure cluster name, service name, launch type, Fargate Spot, Service Connect, autoscaling, capacity limits, CPU target, sidecar, desired count, CPU, memory, app port, and region.",
-  "AWS EKS Cluster: used for managed Kubernetes. Configure cluster name, Kubernetes version, node count, instance type, app port, and region. CloudWatcher uses it for Kubernetes architecture simulation and cost-aware planning.",
-  "AWS ECR Registry: used for Docker image storage. Configure repository settings and image workflow details. CloudWatcher uses it with container deployments and image verification paths.",
-  "AWS Elastic IP: used for static public IPv4 addresses. Configure address attachment intent and region. CloudWatcher models public connectivity and deployment outputs around it.",
-  "AWS Security Group: used as a virtual firewall. Configure inbound rules, SSH, HTTP, HTTPS, private mode, and region. CloudWatcher uses it to model network exposure and deployment security.",
-  "AWS Target Group: used for load-balancer routing. Configure target group name, port, protocol, health path, and target settings where supported. CloudWatcher connects compute nodes to load balancers through it.",
-  "AWS EBS Volume: used for block storage. Configure volume name, size, type, region, and attachment intent. CloudWatcher models persistent disk cost and VM attachment relationships.",
-  "AWS VPC: used for private networking. Configure VPC name, CIDR block, subnet CIDR block, SSH port, HTTP port, HTTPS port, private mode, and region. CloudWatcher uses it as the network base for compute, load balancing, and database nodes.",
-  "AWS Elastic Load Balancer: used for traffic distribution. Configure load balancer name, port, protocol, and region. CloudWatcher uses it to model public traffic entry and backend routing.",
+  "AWS EKS Cluster: used for managed Kubernetes. Configure cluster name, Kubernetes version, node count, instance type, app port, and region. Cloudcam uses it for Kubernetes architecture simulation and cost-aware planning.",
+  "AWS ECR Registry: used for Docker image storage. Configure repository settings and image workflow details. Cloudcam uses it with container deployments and image verification paths.",
+  "AWS Elastic IP: used for static public IPv4 addresses. Configure address attachment intent and region. Cloudcam models public connectivity and deployment outputs around it.",
+  "AWS Security Group: used as a virtual firewall. Configure inbound rules, SSH, HTTP, HTTPS, private mode, and region. Cloudcam uses it to model network exposure and deployment security.",
+  "AWS Target Group: used for load-balancer routing. Configure target group name, port, protocol, health path, and target settings where supported. Cloudcam connects compute nodes to load balancers through it.",
+  "AWS EBS Volume: used for block storage. Configure volume name, size, type, region, and attachment intent. Cloudcam models persistent disk cost and VM attachment relationships.",
+  "AWS VPC: used for private networking. Configure VPC name, CIDR block, subnet CIDR block, SSH port, HTTP port, HTTPS port, private mode, and region. Cloudcam uses it as the network base for compute, load balancing, and database nodes.",
+  "AWS Elastic Load Balancer: used for traffic distribution. Configure load balancer name, port, protocol, and region. Cloudcam uses it to model public traffic entry and backend routing.",
   "AWS Auto Scaling Group: used for elastic compute capacity. Configure min size, max size, desired capacity, instance type, region, AMI, key name, instance name, admin username, and CPU target.",
-  "AWS CloudFront Distribution: used for CDN delivery. Configure distribution name, origin, cache behavior, and region/global delivery fields where supported. CloudWatcher uses it to model global edge delivery.",
+  "AWS CloudFront Distribution: used for CDN delivery. Configure distribution name, origin, cache behavior, and region/global delivery fields where supported. Cloudcam uses it to model global edge delivery.",
   "Azure Virtual Machine: used for Azure compute. Configure VM size, count, admin username, instance name, OS disk type, image publisher, image offer, image SKU, and region.",
   "Azure Storage Account: used for Blob/object storage. Configure storage account name, account tier, replication type, account kind, region, and policy.",
   "Azure SQL Database: used for managed SQL. Configure database name, SKU name, max size bytes, collation, and region.",
@@ -207,7 +207,7 @@ const SERVICE_CONFIGURATION_REFERENCE = [
   "Azure Virtual Network: used for private networking. Configure VNet name, address space, subnet CIDR block, SSH port, HTTP port, HTTPS port, private mode, and region.",
   "Azure Container Registry: used for Docker images. Configure registry name, SKU, region, and image workflow settings where supported.",
   "Azure Public IP: used for public addressing. Configure public IP name, allocation mode, SKU, region, and attachment intent where supported.",
-  "Azure Network Security Group: used for firewall rules. Configure security rules, ports, private mode, and region. CloudWatcher uses it to model access boundaries around Azure workloads.",
+  "Azure Network Security Group: used for firewall rules. Configure security rules, ports, private mode, and region. Cloudcam uses it to model access boundaries around Azure workloads.",
   "Azure Backend Address Pool: used for load-balancer backend routing. Configure backend pool name, port/routing relationships, and region where supported.",
   "Azure Managed Disk: used for VM disk storage. Configure disk name, size, type, region, and attachment intent.",
   "Azure AKS Cluster: used for managed Kubernetes. Configure cluster name, node count, node VM size, DNS prefix, and region.",
@@ -236,15 +236,15 @@ export const docsPages: DocsPage[] = [
     path: "/docs",
     group: "Getting Started",
     label: "Home",
-    title: "CloudWatcher docs",
+    title: "Cloudcam docs",
     description:
-      "Simple guides for setting up CloudWatcher, reading cloud and AI data, running simulations, and using operational workflows safely.",
+      "Simple guides for setting up Cloudcam, reading cloud and AI data, running simulations, and using operational workflows safely.",
     intro:
       "Use these docs like a product handbook. Start with setup, then move into the feature guide that matches the job you are doing.",
     sections: [
       {
         id: "what-it-is",
-        title: "What CloudWatcher helps with",
+        title: "What Cloudcam helps with",
         bullets: [
           "Connect AWS, Azure, or GCP accounts and view cloud inventory, health, cost, alerts, and recommendations.",
           "Track AI usage across providers, models, traces, tokens, latency, errors, and estimated cost.",
@@ -319,7 +319,7 @@ export const docsPages: DocsPage[] = [
         id: "step-2",
         title: "2. Connect one provider",
         bullets: [
-          "For AWS, open Settings > AWS and create the role requested by CloudWatcher.",
+          "For AWS, open Settings > AWS and create the role requested by Cloudcam.",
           "For Azure, open Settings > Azure and add the tenant, subscription, and service-principal details.",
           "For GCP, open Settings > GCP and connect a service account or use the assisted setup flow.",
           "Wait for the page to show connected status before judging dashboard data.",
@@ -353,7 +353,7 @@ export const docsPages: DocsPage[] = [
     path: "/docs/local-development-setup",
     group: "Getting Started",
     label: "Local Setup Guide",
-    title: "Run CloudWatcher locally",
+    title: "Run Cloudcam locally",
     description:
       "Install dependencies, configure environment files, run the backend and frontend, and verify the local app.",
     intro:
@@ -432,9 +432,9 @@ export const docsPages: DocsPage[] = [
     path: "/docs/feature-catalog",
     group: "Getting Started",
     label: "Feature Catalog",
-    title: "CloudWatcher feature catalog",
+    title: "Cloudcam feature catalog",
     description:
-      "Every major CloudWatcher product area, feature, workflow, and developer-facing surface in one technical catalog.",
+      "Every major Cloudcam product area, feature, workflow, and developer-facing surface in one technical catalog.",
     intro:
       "Use this as the master map before jumping into a setup guide. It covers cloud operations, FinOps, AI observability, simulations, live infrastructure, resize migration, logs, reports, admin surfaces, and integrations.",
     sections: [
@@ -467,9 +467,9 @@ export const docsPages: DocsPage[] = [
     path: "/docs/app-pages",
     group: "Getting Started",
     label: "App Pages",
-    title: "All CloudWatcher app pages",
+    title: "All Cloudcam app pages",
     description:
-      "A route-by-route guide to what each CloudWatcher page does and how it fits into the product.",
+      "A route-by-route guide to what each Cloudcam page does and how it fits into the product.",
     intro:
       "This page is useful when you are new to the app or auditing coverage. It explains the purpose of every major page in plain language.",
     sections: [
@@ -499,7 +499,7 @@ export const docsPages: DocsPage[] = [
     label: "API Reference",
     title: "Developer API reference",
     description:
-      "A practical map of the backend API groups that power CloudWatcher features.",
+      "A practical map of the backend API groups that power Cloudcam features.",
     intro:
       "This is not a formal OpenAPI document yet. It is a developer-readable API map based on the backend route groups, useful for integration work and debugging.",
     sections: [
@@ -539,7 +539,7 @@ export const docsPages: DocsPage[] = [
     description:
       "Understand AWS, Azure, GCP, provider switching, capability states, and reconnect behavior.",
     intro:
-      "CloudWatcher uses one workspace for several providers. AWS has the broadest coverage. Azure and GCP are active integrations with feature coverage that depends on permissions and setup.",
+      "Cloudcam uses one workspace for several providers. AWS has the broadest coverage. Azure and GCP are active integrations with feature coverage that depends on permissions and setup.",
     sections: [
       {
         id: "steps",
@@ -580,7 +580,7 @@ export const docsPages: DocsPage[] = [
     label: "Supported Services",
     title: "Supported cloud services",
     description:
-      "A technical list of AWS, Azure, and GCP services CloudWatcher can monitor, simulate, configure, deploy, or inspect.",
+      "A technical list of AWS, Azure, and GCP services Cloudcam can monitor, simulate, configure, deploy, or inspect.",
     intro:
       "This page is written for search and for engineers. It names the actual cloud services and configuration areas that appear across dashboards, simulations, live infrastructure, recommendations, and deployment workflows.",
     sections: [
@@ -620,9 +620,9 @@ export const docsPages: DocsPage[] = [
     label: "Provider Configs",
     title: "Cloud provider configurations",
     description:
-      "The provider credentials, regions, permissions, billing exports, service fields, and deployment settings CloudWatcher uses.",
+      "The provider credentials, regions, permissions, billing exports, service fields, and deployment settings Cloudcam uses.",
     intro:
-      "Use this page when you need to understand exactly what CloudWatcher asks for and why.",
+      "Use this page when you need to understand exactly what Cloudcam asks for and why.",
     sections: [
       {
         id: "aws-config",
@@ -684,7 +684,7 @@ export const docsPages: DocsPage[] = [
     label: "Service Configs",
     title: "Service configuration reference",
     description:
-      "Every supported simulation and deployment service with the configuration fields CloudWatcher uses.",
+      "Every supported simulation and deployment service with the configuration fields Cloudcam uses.",
     intro:
       "Use this page when you want the exact service-level configuration map. It is useful for developers building a simulation, reviewing Terraform output, debugging deployment validation, or comparing AWS, Azure, and GCP service support.",
     sections: [
@@ -715,7 +715,7 @@ export const docsPages: DocsPage[] = [
     description:
       "Set up AWS access for dashboards, inventory, billing, alerts, recommendations, simulations, and actions.",
     intro:
-      "AWS is the deepest CloudWatcher integration today.",
+      "AWS is the deepest Cloudcam integration today.",
     sections: [
       {
         id: "permissions",
@@ -734,7 +734,7 @@ export const docsPages: DocsPage[] = [
           "Open Settings > AWS.",
           "Copy the generated external ID and role instructions.",
           "Create the IAM role or deploy the provided stack in AWS.",
-          "Paste the role details back into CloudWatcher.",
+          "Paste the role details back into Cloudcam.",
           "Save and wait for connected status.",
           "Open Dashboard and a known service page to confirm data.",
         ],
@@ -848,7 +848,7 @@ export const docsPages: DocsPage[] = [
         id: "before",
         title: "Before setup",
         bullets: [
-          "Choose the GCP project you want CloudWatcher to read.",
+          "Choose the GCP project you want Cloudcam to read.",
           "Create a service account with the permissions needed for inventory, metrics, and billing.",
           "Enable required APIs for the resources you want to view.",
           "Set up billing export if you need reliable cost data.",
@@ -907,7 +907,7 @@ export const docsPages: DocsPage[] = [
           "Open Settings > GitHub.",
           "Start the GitHub OAuth connection.",
           "Approve access for the repositories your team wants to use.",
-          "Return to CloudWatcher and confirm connected status.",
+          "Return to Cloudcam and confirm connected status.",
           "Select repositories and branches only inside workflows that need source access.",
         ],
       },
@@ -915,7 +915,7 @@ export const docsPages: DocsPage[] = [
         id: "disconnect",
         title: "Disconnect",
         bullets: [
-          "Use Settings > GitHub to remove the app connection from CloudWatcher.",
+          "Use Settings > GitHub to remove the app connection from Cloudcam.",
           "Also review GitHub account or organization app permissions if you want to revoke access completely.",
         ],
       },
@@ -1042,7 +1042,7 @@ export const docsPages: DocsPage[] = [
         title: "What recommendations can show",
         bullets: [
           "Rightsizing and waste opportunities.",
-          "Provider-native findings and CloudWatcher-generated insights.",
+          "Provider-native findings and Cloudcam-generated insights.",
           "Security or reliability warnings.",
           "AI routing, prompt, model, cost, and error recommendations.",
           "Suggested next steps that may lead to a plan, simulation, or manual review.",
@@ -1150,7 +1150,7 @@ export const docsPages: DocsPage[] = [
         codeBlocks: [
           {
             title: "/etc/systemd/system/rabbitt-agent.service",
-            code: "[Unit]\nDescription=CloudWatcher VPS log agent\nAfter=network.target\n\n[Service]\nEnvironment=RABBITT_AGENT_TOKEN=replace_with_token\nExecStart=/usr/local/bin/rabbitt-agent\nRestart=always\n\n[Install]\nWantedBy=multi-user.target",
+            code: "[Unit]\nDescription=Cloudcam VPS log agent\nAfter=network.target\n\n[Service]\nEnvironment=RABBITT_AGENT_TOKEN=replace_with_token\nExecStart=/usr/local/bin/rabbitt-agent\nRestart=always\n\n[Install]\nWantedBy=multi-user.target",
           },
           {
             title: "Enable and check",
@@ -1246,8 +1246,8 @@ export const docsPages: DocsPage[] = [
         id: "keys",
         title: "Ingest keys and provider keys",
         bullets: [
-          "Ingest keys let your application send traces and events to CloudWatcher.",
-          "Provider keys let CloudWatcher test or use a provider integration where that feature requires direct provider access.",
+          "Ingest keys let your application send traces and events to Cloudcam.",
+          "Provider keys let Cloudcam test or use a provider integration where that feature requires direct provider access.",
           "Keep prompt and response capture optional if your team has privacy restrictions.",
         ],
       },
@@ -1505,7 +1505,7 @@ export const docsPages: DocsPage[] = [
         note: {
           tone: "warning",
           title: "Destroy is separate from delete",
-          body: "Use the destroy workflow for deployed simulation resources. Delete only removes the saved design from CloudWatcher.",
+          body: "Use the destroy workflow for deployed simulation resources. Delete only removes the saved design from Cloudcam.",
         },
       },
     ],
@@ -1691,7 +1691,7 @@ export const docsPages: DocsPage[] = [
         id: "assistant",
         title: "In-app assistant",
         paragraphs: [
-          "The assistant is useful for product help, documentation questions, and operational questions when CloudWatcher has enough grounded workspace data.",
+          "The assistant is useful for product help, documentation questions, and operational questions when Cloudcam has enough grounded workspace data.",
         ],
       },
       {
@@ -1775,14 +1775,14 @@ export const docsPages: DocsPage[] = [
     label: "FAQ",
     title: "FAQ",
     description:
-      "Short answers for common CloudWatcher setup and feature questions.",
+      "Short answers for common Cloudcam setup and feature questions.",
     sections: [
       {
         id: "faq-list",
         title: "Frequently asked questions",
         faqs: [
           {
-            question: "Is CloudWatcher only for AWS?",
+            question: "Is Cloudcam only for AWS?",
             answer:
               "No. AWS has the deepest coverage, but Azure and GCP are supported in provider-aware setup, dashboards, billing, alerts, simulations, and live infrastructure where the capability is ready.",
           },

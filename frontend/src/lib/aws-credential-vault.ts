@@ -58,7 +58,7 @@ function randomChallenge() {
 export async function unlockWithDevicePasskey(label: string): Promise<boolean> {
   if (typeof window === "undefined" || !("PublicKeyCredential" in window) || !navigator.credentials) {
     const confirmed = window.confirm(
-      `Use saved AWS key "${label}" for this action?\n\nThis browser does not expose a passkey prompt here, so CloudWatcher will require this confirmation before continuing.`
+      `Use saved AWS key "${label}" for this action?\n\nThis browser does not expose a passkey prompt here, so Cloudcam will require this confirmation before continuing.`
     );
     if (!confirmed) throw new Error("Saved key use was cancelled");
     return true;
@@ -82,7 +82,7 @@ export async function unlockWithDevicePasskey(label: string): Promise<boolean> {
       const createResult = (await navigator.credentials.create({
         publicKey: {
           challenge: randomChallenge(),
-          rp: { name: "CloudWatcher" },
+          rp: { name: "Cloudcam" },
           user: {
             id: randomChallenge(), // random dummy user id
             name: "local-auth",

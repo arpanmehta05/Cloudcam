@@ -17,7 +17,7 @@ export function AzureStatusCard({
   connectionMeta,
   handleDisconnect,
   isDisconnecting,
-  brandName = "CloudWatcher",
+  brandName = "Cloudcam",
 }: AzureStatusCardProps) {
   return (
     <Card className="border-green-200 bg-green-50/5">

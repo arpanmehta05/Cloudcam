@@ -159,7 +159,7 @@ export function AgentListPanel({
                     <div className="relative group">
                       <pre className="bg-slate-50 dark:bg-[#050C16] border border-slate-200 dark:border-slate-800/80 text-slate-800 dark:text-slate-300 rounded-lg p-3 text-xs overflow-auto pr-10">
 {`[Unit]
-Description=RabbittWatch VPS Agent
+Description=Cloudcam VPS Agent
 After=network.target
 
 [Service]
@@ -182,7 +182,7 @@ WantedBy=multi-user.target`}
                         variant="ghost"
                         className="absolute right-1.5 top-1.5 h-6 w-6 text-slate-400 hover:text-slate-100 hover:bg-slate-800 opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity"
                         onClick={() => {
-                          const serviceContent = `[Unit]\nDescription=RabbittWatch VPS Agent\nAfter=network.target\n\n[Service]\nType=simple\nUser=root\nEnvironment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\nEnvironment=AGENT_ID=${createdCredentials.agentId}\nEnvironment=INGEST_KEY=${createdCredentials.ingestKey}\nEnvironment=API_BASE_URL=${createdCredentials.apiBaseUrl}\nEnvironment=ENABLED_SOURCES=system,docker,pm2,nginx,apache\nExecStart=/usr/bin/node /usr/lib/node_modules/@rabbittwatch/vps-agent/dist/index.js\nRestart=on-failure\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target`;
+                          const serviceContent = `[Unit]\nDescription=Cloudcam VPS Agent\nAfter=network.target\n\n[Service]\nType=simple\nUser=root\nEnvironment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\nEnvironment=AGENT_ID=${createdCredentials.agentId}\nEnvironment=INGEST_KEY=${createdCredentials.ingestKey}\nEnvironment=API_BASE_URL=${createdCredentials.apiBaseUrl}\nEnvironment=ENABLED_SOURCES=system,docker,pm2,nginx,apache\nExecStart=/usr/bin/node /usr/lib/node_modules/@rabbittwatch/vps-agent/dist/index.js\nRestart=on-failure\nRestartSec=10\n\n[Install]\nWantedBy=multi-user.target`;
                           handleCopy(serviceContent, "serviceContent");
                         }}
                         title="Copy service file contents"

@@ -19,7 +19,7 @@ export function CliProvision({
       <CardHeader>
         <CardTitle className="text-lg">Deploy via Azure Cloud Shell</CardTitle>
         <CardDescription>
-          This command automatically registers an Active Directory App, assigns subscription Reader permissions, and connects to your CloudWatcher dashboard.
+          This command automatically registers an Active Directory App, assigns subscription Reader permissions, and connects to your Cloudcam dashboard.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">

@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { docsGroups, docsPages } from "@/lib/docs-content";
 import { useDocsOpenGroups, useDocsSidebarScroll } from "@/components/docs/DocsStateProvider.client";
 
-const BRAND_NAME = "CloudWatcher";
+const BRAND_NAME = "Cloudcam";
 
 function DocsNavPanel() {
   const pathname = usePathname();

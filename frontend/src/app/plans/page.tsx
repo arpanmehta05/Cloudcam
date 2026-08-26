@@ -49,9 +49,9 @@ type DisplayPlan = PlanDef & {
   highlighted: boolean;
 };
 
-const BRAND_NAME = "CloudWatcher";
-const BRAND_SUBTITLE = "By Rabbitt Ai";
-const SALES_EMAIL = "cloudwatcher@rabbitt.ai";
+const BRAND_NAME = "Cloudcam";
+const BRAND_SUBTITLE = "By Fonder";
+const SALES_EMAIL = "sales@cloudcam.fonder.tech";
 
 const navLinks = [
   { label: "Platform", href: "/#platform" },
@@ -561,7 +561,7 @@ export default function PlansPage() {
               </p>
             </div>
             <Link
-              href={`mailto:${SALES_EMAIL}?subject=CloudWatcher pricing consultation`}
+              href={`mailto:${SALES_EMAIL}?subject=Cloudcam pricing consultation`}
               className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-[#1A56DB] px-6 text-sm font-bold text-white shadow-[0_14px_34px_rgba(26,86,219,0.22)] transition-colors hover:bg-[#1040A0]"
             >
               Talk to sales

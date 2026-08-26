@@ -113,7 +113,7 @@ export function AuthModal({
           <motion.div
             role="dialog"
             aria-modal="true"
-            aria-label="Sign in to CloudWatcher"
+            aria-label="Sign in to Cloudcam"
             initial={{ opacity: 0, y: 16, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.98 }}

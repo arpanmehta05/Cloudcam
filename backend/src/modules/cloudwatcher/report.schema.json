@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://cloudwatcher.rabbitt.ai/schemas/report.schema.json",
+  "$id": "https://cloudcam.fonder.tech/schemas/report.schema.json",
   "title": "CloudWatcher Skill Report",
   "type": "object",
   "additionalProperties": false,

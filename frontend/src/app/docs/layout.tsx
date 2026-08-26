@@ -3,14 +3,14 @@ import type { ReactNode } from "react";
 import { GlobalAiAgentWidget } from "@/components/chat/GlobalAiAgentWidget";
 import { DocsStateProvider } from "@/components/docs/DocsStateProvider.client";
 
-const BRAND_NAME = "CloudWatcher";
+const BRAND_NAME = "Cloudcam";
 
 export const metadata: Metadata = {
   title: {
     default: `${BRAND_NAME} Docs | Cloud Cost Optimization, Multicloud Monitoring, and AI Observability`,
     template: `%s | ${BRAND_NAME} Docs`,
   },
-  description: `CloudWatcher docs, also discoverable as Rabbittize docs, for multicloud onboarding, billing, alerts, AI observability, simulations, reports, migration, troubleshooting, and FAQ.`,
+  description: `Cloudcam docs for multicloud onboarding, billing, alerts, AI observability, simulations, reports, migration, troubleshooting, and FAQ.`,
   alternates: {
     canonical: "/docs",
   },
@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     siteName: BRAND_NAME,
     title: `${BRAND_NAME} Docs | Cloud Cost Optimization and Multicloud Guides`,
     description:
-      "Read CloudWatcher documentation for multicloud onboarding, cloud cost management, AI observability, alerts, simulations, reports, migration, and troubleshooting.",
+      "Read Cloudcam documentation for multicloud onboarding, cloud cost management, AI observability, alerts, simulations, reports, migration, and troubleshooting.",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "CloudWatcher documentation for cloud cost optimization and multicloud monitoring",
+        alt: "Cloudcam documentation for cloud cost optimization and multicloud monitoring",
       },
     ],
   },
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${BRAND_NAME} Docs | Cloud Cost Optimization Guides`,
     description:
-      "CloudWatcher documentation for multicloud setup, cost optimization, AI observability, simulations, and monitoring workflows.",
+      "Cloudcam documentation for multicloud setup, cost optimization, AI observability, simulations, and monitoring workflows.",
     images: ["/opengraph-image"],
   },
 };

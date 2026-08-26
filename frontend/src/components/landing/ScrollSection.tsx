@@ -14,7 +14,7 @@ const slides = [
   {
     kicker: "Cloud spend clarity",
     heading: "Stop guessing where your cloud budget goes",
-    sub: "CloudWatcher breaks down every dollar across services, teams, and regions so the expensive parts of your architecture are easy to spot.",
+    sub: "Cloudcam breaks down every dollar across services, teams, and regions so the expensive parts of your architecture are easy to spot.",
     metric: "$1.23M",
     label: "monthly spend mapped",
     accent: "#1A56DB",

@@ -21,8 +21,8 @@ import { SimulationVisual as InteractiveSimulationVisual } from "@/components/la
 import { AIObservabilityVisual } from "./AIObservabilityVisual";
 import { OperationsVisual } from "./OperationsVisual";
 
-const BRAND_NAME = "CloudWatcher";
-const BRAND_SUBTITLE = "By Rabbitt Ai";
+const BRAND_NAME = "Cloudcam";
+const BRAND_SUBTITLE = "By Fonder";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -51,24 +51,24 @@ const navLinks = [
 
 const faqs = [
   {
-    question: "What is CloudWatcher?",
+    question: "What is Cloudcam?",
     answer:
-      "CloudWatcher is an engineering-first cloud cost optimization and observability platform. It helps engineering, DevOps, and FinOps teams monitor multi-cloud infrastructure, reduce waste, analyze AI model spend, and automate savings recommendations in real-time.",
+      "Cloudcam is an engineering-first cloud cost optimization and observability platform. It helps engineering, DevOps, and FinOps teams monitor multi-cloud infrastructure, reduce waste, analyze AI model spend, and automate savings recommendations in real-time.",
   },
   {
-    question: "Is CloudWatcher the same product as Rabbittize?",
+    question: "What is Cloudcam?",
     answer:
-      "Yes. CloudWatcher is the official product platform name, and it is hosted at the rabbitt.ai domain. The platform has been upgraded and fully optimized to support legacy Rabbittize integrations alongside all new CloudWatcher FinOps capabilities.",
+      "Cloudcam is the product platform for cloud cost optimization, monitoring, and AI observability.",
   },
   {
-    question: "How does CloudWatcher help reduce cloud costs?",
+    question: "How does Cloudcam help reduce cloud costs?",
     answer:
-      "CloudWatcher continuously scans your cloud infrastructure for idle databases, unattached storage, and oversized instances. It then provides actionable, safe optimization recommendations (like right-sizing and reservations) with built-in Terraform previews and simulation dry-runs.",
+      "Cloudcam continuously scans your cloud infrastructure for idle databases, unattached storage, and oversized instances. It then provides actionable, safe optimization recommendations (like right-sizing and reservations) with built-in Terraform previews and simulation dry-runs.",
   },
   {
-    question: "Who should use CloudWatcher?",
+    question: "Who should use Cloudcam?",
     answer:
-      "CloudWatcher is built for modern engineering teams, DevOps engineers, and FinOps leaders who want cost visibility and optimization workflows integrated directly into their existing developer workflows, rather than locked inside isolated finance tools.",
+      "Cloudcam is built for modern engineering teams, DevOps engineers, and FinOps leaders who want cost visibility and optimization workflows integrated directly into their existing developer workflows, rather than locked inside isolated finance tools.",
   },
 ];
 
@@ -151,7 +151,7 @@ export function LandingPage() {
               variants={stagger}
             >
               <motion.p variants={fadeUp} className="mb-4 text-sm font-bold text-[#1A56DB]">
-                CloudWatcher FAQ
+                Cloudcam FAQ
               </motion.p>
               <motion.h2
                 id="faq-heading"
@@ -161,7 +161,7 @@ export function LandingPage() {
                 Cloud cost optimization questions, answered
               </motion.h2>
               <motion.p variants={fadeUp} className="mt-5 max-w-xl text-base leading-7 text-[#475569]">
-                Clear answers for teams comparing CloudWatcher, Rabbittize,
+                Clear answers for teams evaluating Cloudcam,
                 and modern multi-cloud cost optimization workflows.
               </motion.p>
             </motion.div>

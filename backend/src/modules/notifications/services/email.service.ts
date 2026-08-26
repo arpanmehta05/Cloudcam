@@ -210,11 +210,11 @@ export async function sendAccountReactivatedEmail(opts: {
     text: [
       `${BRAND_NAME} account reactivated`,
       "",
-      "The scheduled deletion for your Cloudwatcher account has been successfully canceled.",
+      "The scheduled deletion for your Cloudcam account has been successfully canceled.",
       "",
       "Your account is now fully active, and all your data has been retained.",
       "",
-      "Thank you for using Cloudwatcher!",
+      "Thank you for using Cloudcam!",
     ].join("\n"),
   });
 }

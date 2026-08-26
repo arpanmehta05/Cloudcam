@@ -29,7 +29,7 @@ function CredentialSetupGuidelines({
           <li>
             Run{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 font-semibold">
-              az ad sp create-for-rbac --name "CloudWatcher" --role Contributor
+              az ad sp create-for-rbac --name "Cloudcam" --role Contributor
             </code>
           </li>
           <li>Use the client details returned to authorize your credentials.</li>

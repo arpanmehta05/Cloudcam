@@ -10,7 +10,7 @@ import {
   normalizeDocsPath,
 } from "@/lib/docs-content";
 
-const BRAND_NAME = "CloudWatcher";
+const BRAND_NAME = "Cloudcam";
 
 const homeHighlights = [
   {
@@ -56,7 +56,7 @@ export async function generateMetadata({
     : `${BRAND_NAME} Docs`;
   const description =
     page?.description ??
-    "CloudWatcher documentation for multicloud onboarding, cloud cost optimization, monitoring, AI observability, simulations, reports, migration, and troubleshooting.";
+    "Cloudcam documentation for multicloud onboarding, cloud cost optimization, monitoring, AI observability, simulations, reports, migration, and troubleshooting.";
 
   return {
     title: {
@@ -64,9 +64,8 @@ export async function generateMetadata({
     },
     description,
     keywords: [
-      "CloudWatcher docs",
-      "Rabbittize docs",
-      "CloudWatcher documentation",
+      "Cloudcam docs",
+      "Cloudcam documentation",
       "cloud cost optimization docs",
       "multicloud monitoring documentation",
       "AI observability docs",
@@ -75,8 +74,8 @@ export async function generateMetadata({
       "GCP Compute Engine Cloud Storage Cloud SQL GKE Cloud Run documentation",
       "Terraform cloud simulation documentation",
       "cloud provider configuration guide",
-      page?.label ?? "CloudWatcher",
-      page?.group ?? "CloudWatcher docs",
+      page?.label ?? "Cloudcam",
+      page?.group ?? "Cloudcam docs",
     ],
     alternates: {
       canonical: canonicalPath,
@@ -114,7 +113,7 @@ export default async function DocsPageRoute({ params }: PageProps) {
   }
 
   const { prev, next } = getDocsNeighbors(normalizeDocsPath(slug));
-  const pageUrl = `https://cloudwatcher.rabbitt.ai${page.path}`;
+  const pageUrl = `https://cloudcam.fonder.tech${page.path}`;
   const docsStructuredData = [
     {
       "@context": "https://schema.org",
@@ -126,21 +125,18 @@ export default async function DocsPageRoute({ params }: PageProps) {
       url: pageUrl,
       isPartOf: {
         "@type": "WebSite",
-        "@id": "https://cloudwatcher.rabbitt.ai/#website",
-        name: "CloudWatcher",
-        alternateName: "Rabbittize",
+        "@id": "https://cloudcam.fonder.tech/#website",
+        name: "Cloudcam",
       },
       about: [
-        "CloudWatcher documentation",
-        "Rabbittize documentation",
+        "Cloudcam documentation",
         page.group,
         page.label,
       ],
       publisher: {
         "@type": "Organization",
-        "@id": "https://cloudwatcher.rabbitt.ai/#organization",
-        name: "CloudWatcher",
-        alternateName: "Rabbittize",
+        "@id": "https://cloudcam.fonder.tech/#organization",
+        name: "Cloudcam",
       },
     },
     {
@@ -150,14 +146,14 @@ export default async function DocsPageRoute({ params }: PageProps) {
         {
           "@type": "ListItem",
           position: 1,
-          name: "CloudWatcher",
-          item: "https://cloudwatcher.rabbitt.ai/",
+          name: "Cloudcam",
+          item: "https://cloudcam.fonder.tech/",
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "Docs",
-          item: "https://cloudwatcher.rabbitt.ai/docs",
+          item: "https://cloudcam.fonder.tech/docs",
         },
         ...(page.slug.length > 0
           ? [
@@ -187,7 +183,7 @@ export default async function DocsPageRoute({ params }: PageProps) {
           <div className="mt-8">
             <div className="mb-8 rounded-2xl border border-[#DBEAFE] bg-white p-5 shadow-sm">
               <p className="text-sm font-semibold leading-6 text-[#475569]">
-                These CloudWatcher docs, also known by the Rabbittize domain,
+                These Cloudcam docs
                 help engineering teams set up multicloud monitoring, understand
                 cloud cost optimization workflows, trace AI spend, and
                 troubleshoot billing, alerts, simulations, reports, migrations,
@@ -237,7 +233,7 @@ export default async function DocsPageRoute({ params }: PageProps) {
                     {
                       href: "/docs/app-pages",
                       title: "App pages",
-                      body: "A route-by-route explanation of every major CloudWatcher page and what it is used for.",
+                      body: "A route-by-route explanation of every major Cloudcam page and what it is used for.",
                     },
                     {
                       href: "/docs/api-reference",
@@ -257,7 +253,7 @@ export default async function DocsPageRoute({ params }: PageProps) {
                     {
                       href: "/docs/supported-cloud-services",
                       title: "Supported cloud services",
-                      body: "See the AWS, Azure, and GCP services CloudWatcher can monitor, simulate, configure, or deploy.",
+                      body: "See the AWS, Azure, and GCP services Cloudcam can monitor, simulate, configure, or deploy.",
                     },
                     {
                       href: "/docs/cloud-provider-configurations",

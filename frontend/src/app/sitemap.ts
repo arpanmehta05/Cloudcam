@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { docsPages } from "@/lib/docs-content";
 
-const siteUrl = "https://cloudwatcher.rabbitt.ai";
+const siteUrl = "https://cloudcam.fonder.tech";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();

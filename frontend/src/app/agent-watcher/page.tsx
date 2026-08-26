@@ -6,7 +6,7 @@ import { AgentWatcherQueryProvider } from "./QueryProvider";
 export const metadata: Metadata = {
   title: "Agent Watcher - Audit your AI harness",
   description:
-    "Hand your coding agent a strict prompt that audits your AI system's harness, roadmap, gaps, probes, and evidence-backed CloudWatcher score.",
+    "Hand your coding agent a strict prompt that audits your AI system's harness, roadmap, gaps, probes, and evidence-backed Cloudcam score.",
   alternates: { canonical: "/agent-watcher" },
 };
 

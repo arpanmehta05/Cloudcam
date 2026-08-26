@@ -21,10 +21,10 @@ function getIngestEndpoint(): string {
   }
   const appEnv = process.env.NEXT_PUBLIC_APP_ENV || process.env.NODE_ENV;
   if (appEnv === "production") {
-    return "https://rabbitize-api.rabbitt.ai";
+    return "https://cloudcam.server.fonder.tech";
   }
   if (appEnv === "staging") {
-    return "http://stagingrabbitt.duckdns.org";
+    return "http://localhost:4000";
   }
   return "http://localhost:4000";
 }

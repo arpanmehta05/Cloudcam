@@ -12,7 +12,7 @@ import type { Agent, ReportDetail, ReportSummary } from "./types";
 async function getJson<T>(url: string): Promise<T> {
   const res = await authFetch(url);
   if (!res.ok) {
-    throw new Error(`CloudWatcher API error ${res.status}: ${res.statusText}`);
+    throw new Error(`Cloudcam API error ${res.status}: ${res.statusText}`);
   }
   return (await res.json()) as T;
 }
@@ -39,7 +39,7 @@ export async function getReport(reportId: string): Promise<ReportDetail> {
 export async function downloadReportPdf(reportId: string): Promise<Blob> {
   const res = await authFetch(`/api/v1/reports/${encodeURIComponent(reportId)}/pdf?t=${Date.now()}`);
   if (!res.ok) {
-    throw new Error(`CloudWatcher PDF error ${res.status}: ${res.statusText}`);
+    throw new Error(`Cloudcam PDF error ${res.status}: ${res.statusText}`);
   }
   return res.blob();
 }

@@ -24,7 +24,7 @@ import { DynamicModal } from "@/components/ui/DynamicModal";
 import { useAwsSettings } from "../hooks/useCloudSettings";
 import { ProviderConnectionTabs } from "./ProviderConnectionTabs";
 
-const BRAND_NAME = "CloudWatcher";
+const BRAND_NAME = "Cloudcam";
 const RabbittizeStackName = "Rabbittize-Integration";
 
 const STEPS = [

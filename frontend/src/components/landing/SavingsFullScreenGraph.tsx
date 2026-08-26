@@ -72,7 +72,7 @@ const phases = [
   },
   {
     eyebrow: "THE FIX",
-    heading: "CloudWatcher turns waste into owned actions",
+    heading: "Cloudcam turns waste into owned actions",
     description:
       "AI-powered detection groups evidence, finds owners, and routes the right optimization work to the right team.",
     stroke: "#1A56DB",

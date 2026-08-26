@@ -20,18 +20,17 @@ const isProductionEnv = appEnvRaw === "production";
 const isStagingEnv = appEnvRaw === "staging";
 
 function resolveApiBaseUrl(): string {
-  if (isProductionEnv) return "https://rabbitize-api.rabbitt.ai";
+  const configuredUrl = env("PUBLIC_API_BASE_URL");
+  if (configuredUrl) return configuredUrl.replace(/\/+$/, "");
+  if (isProductionEnv) return "https://cloudcam.server.fonder.tech";
   if (isStagingEnv) {
     return env(
       "STAGING_API_BASE_URL",
       "PUBLIC_API_BASE_URL",
-      "http://stagingrabbitt.duckdns.org",
+      "http://localhost:4000",
     ).replace(/\/+$/, "");
   }
-  return env("PUBLIC_API_BASE_URL", undefined, "http://localhost:4000").replace(
-    /\/+$/,
-    "",
-  );
+  return "http://localhost:4000";
 }
 
 const resolvedBaseUrl = resolveApiBaseUrl();
@@ -219,6 +218,6 @@ export const config = {
     port: parseInt(process.env.SMTP_PORT || "587", 10),
     user: process.env.SMTP_USER || "",
     pass: process.env.SMTP_PASS || "",
-    from: process.env.SMTP_FROM || "noreply@rabbittize.com",
+    from: process.env.SMTP_FROM || "noreply@cloudcam.fonder.tech",
   },
 };

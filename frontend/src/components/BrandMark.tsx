@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-const BRAND_NAME = "CloudWatcher";
-const BRAND_SUBTITLE = "By Rabbitt Ai";
+const BRAND_NAME = "Cloudcam";
+const BRAND_SUBTITLE = "By Fonder";
 const BRAND_LOGO_SRC = "/Logo.svg";
 
 type BrandMarkProps = {
@@ -37,7 +37,7 @@ export function BrandMark({
       >
         <Image
           src={BRAND_LOGO_SRC}
-          alt="CloudWatcher Logo"
+          alt="Cloudcam Logo"
           width={64}
           height={64}
           className="h-[115%] w-[115%] max-w-none object-contain"

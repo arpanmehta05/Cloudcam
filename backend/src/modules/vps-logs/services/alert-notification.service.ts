@@ -131,7 +131,7 @@ export async function sendVpsErrorBurstAlerts(
     const html = `
         <div style="font-family: Arial, sans-serif; color: #0f172a; line-height: 1.6;">
             <h2 style="margin-bottom: 8px;">VPS error burst detected</h2>
-            <p>CloudWatcher detected a heavy burst of repeated error logs for one of your VPS agents.</p>
+            <p>Cloudcam detected a heavy burst of repeated error logs for one of your VPS agents.</p>
             <table style="border-collapse: collapse; margin: 20px 0; width: 100%; max-width: 640px;">
                 <tr><td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>Agent</strong></td><td style="padding: 8px; border: 1px solid #e2e8f0;">${escapeHtml(
                   agent.name || agent.agentId
@@ -209,13 +209,13 @@ export async function sendVpsAlarmEmail(params: {
   sample?: StoredVpsLogEntry;
 }) {
   const { userEmail, agent, rule, value, sample } = params;
-  const subject = `CloudWatcher ${rule.severity} alarm: ${rule.name}`;
+  const subject = `Cloudcam ${rule.severity} alarm: ${rule.name}`;
   const comparator = describeComparator(rule.comparator);
   const unit = rule.type === "metric_threshold" ? "%" : "logs";
   const html = `
       <div style="font-family: Arial, sans-serif; color: #0f172a; line-height: 1.6;">
           <h2 style="margin-bottom: 8px;">${escapeHtml(rule.name)} triggered</h2>
-          <p>CloudWatcher detected an alarm condition on your own logs and metrics collector.</p>
+          <p>Cloudcam detected an alarm condition on your own logs and metrics collector.</p>
           <table style="border-collapse: collapse; margin: 20px 0; width: 100%; max-width: 640px;">
               <tr><td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>Agent</strong></td><td style="padding: 8px; border: 1px solid #e2e8f0;">${escapeHtml(
                 agent.name || agent.agentId
@@ -268,7 +268,7 @@ export async function sendVpsAlarmSlack(params: {
   const emoji = severityEmoji[rule.severity || "warning"] || "⚠️";
 
   const title = `${emoji} *Alarm Triggered: ${rule.name}*`;
-  const message = `CloudWatcher detected an alarm condition on your Own Logs & Metrics VPS agent.\n\n*Agent:* ${
+  const message = `Cloudcam detected an alarm condition on your Own Logs & Metrics VPS agent.\n\n*Agent:* ${
     agent.name || agent.agentId
   }\n*Metric:* ${rule.metric || rule.level || "logs"}\n*Observed:* ${value.toFixed(
     2
@@ -283,7 +283,7 @@ export async function sendVpsAlarmSlack(params: {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          username: "CloudWatcher",
+          username: "Cloudcam",
           text: `*${title}*\n${message}`,
           blocks: [
             {

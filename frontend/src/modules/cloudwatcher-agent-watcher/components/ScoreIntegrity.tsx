@@ -24,7 +24,7 @@ export function ScoreIntegrity({ report, deep }: { report: ReportDetail; deep: D
         <SectionHead
           eyebrow="Score integrity"
           title="Why the score is capped where it is"
-          sub="CloudWatcher fails closed: a missing critical control ceilings the score no matter how many other checks pass. This is the audit trail behind the number."
+          sub="Cloudcam fails closed: a missing critical control ceilings the score no matter how many other checks pass. This is the audit trail behind the number."
           icon={Gauge}
           accent="#0F172A"
           right={hasCap ? <CountPill tone="slate">Cap applied</CountPill> : undefined}

@@ -75,7 +75,7 @@ span = trace.start_span({
 })
 
 # result = client.chat.completions.create(...)
-span.end(status="success", output="Hello from RabbittWatch", promptTokens=12, completionTokens=8)
+span.end(status="success", output="Hello from Cloudcam", promptTokens=12, completionTokens=8)
 trace.flush()
 rw.close()`,
   },
@@ -98,7 +98,7 @@ const result = await rw.trace(
   { name: "chat.completion", provider: "openai", model: "gpt-4o-mini" },
   async () => {
     // return await openai.chat.completions.create(...)
-    return { message: "Hello from RabbittWatch" };
+    return { message: "Hello from Cloudcam" };
   }
 );
 
@@ -107,7 +107,7 @@ await rw.flush();`,
   {
     id: "langchain-python",
     label: "LangChain Python",
-    description: "Attach the RabbittWatch tracer as a LangChain callback.",
+    description: "Attach the Cloudcam tracer as a LangChain callback.",
     install: "pip install rabbittwatch-ai-observability langchain-core",
     code: (ctx) => `import os
 from rabbittwatch.client import RabbittWatchAI

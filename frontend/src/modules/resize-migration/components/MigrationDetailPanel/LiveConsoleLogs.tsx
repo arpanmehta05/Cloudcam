@@ -34,7 +34,7 @@ export function LiveConsoleLogs({
             Live Console Logs
           </CardTitle>
           <CardDescription className="text-[11px] font-semibold text-slate-500">
-            Real-time events streaming from CloudWatcher engine.
+            Real-time events streaming from Cloudcam engine.
           </CardDescription>
         </div>
         <div className="flex items-center gap-2">

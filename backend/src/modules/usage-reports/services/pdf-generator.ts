@@ -252,7 +252,7 @@ export function generateReportPdf(params: {
             const footerY = pageHeight - margin - 12;
             doc.moveTo(margin, footerY - 8).lineTo(pageWidth - margin, footerY - 8).strokeColor(colors.line).lineWidth(0.5).stroke();
             doc.fillColor(colors.muted).font("Helvetica").fontSize(8).text(
-                `CloudWatcher by Rabbitt AI  |  Page ${i + 1} of ${range.count}`,
+                `Cloudcam by Fonder  |  Page ${i + 1} of ${range.count}`,
                 margin,
                 footerY,
                 { width: contentWidth, height: 10, align: "center", lineBreak: false }

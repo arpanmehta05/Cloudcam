@@ -67,7 +67,7 @@ export function IndustryCards() {
           </h2>
           <p className="mt-4 text-base leading-7 text-[#475569]">
             Whether you&apos;re a startup shipping fast or an enterprise
-            managing millions, CloudWatcher adapts to your scale.
+            managing millions, Cloudcam adapts to your scale.
           </p>
         </motion.div>
 

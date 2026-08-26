@@ -74,12 +74,12 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           <Link
             href="/admin"
             className="flex items-center gap-2.5 rounded-lg px-2 py-2 transition hover:bg-muted"
-            aria-label="CloudWatcher Admin"
+            aria-label="Cloudcam Admin"
           >
             <span className="flex h-9 w-9 flex-none items-center justify-center overflow-visible">
               <Image
                 src="/Logo.svg"
-                alt="CloudWatcher"
+                alt="Cloudcam"
                 width={44}
                 height={44}
                 className="h-[120%] w-[120%] max-w-none object-contain"
@@ -87,7 +87,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               />
             </span>
             <div className="min-w-0 leading-tight">
-              <div className="truncate text-[14px] font-bold tracking-tight">CloudWatcher</div>
+              <div className="truncate text-[14px] font-bold tracking-tight">Cloudcam</div>
               <div className="text-[11px] font-medium text-muted-foreground">Billing and access</div>
             </div>
           </Link>

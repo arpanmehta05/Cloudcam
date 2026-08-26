@@ -161,7 +161,7 @@ export function AgentWatcherExperience() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `cloudwatcher-agent-report-${activeReportId}.pdf`;
+      a.download = `cloudcam-agent-report-${activeReportId}.pdf`;
       document.body.appendChild(a);
       a.click();
       a.remove();

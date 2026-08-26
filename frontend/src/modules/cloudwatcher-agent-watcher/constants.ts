@@ -26,7 +26,7 @@ export const ORCHESTRATOR_SKILL_URL = `${SKILL_RAW_BASE}/_orchestrator/SKILL.md`
 // build NEXT_PUBLIC_API_BASE_URL points at the backend; when unset we fall
 // back to the public CloudWatcher host.
 export const REPORTS_SUBMIT_URL = `${
-  process.env.NEXT_PUBLIC_API_BASE_URL || "https://cloudwatcher.rabbitt.ai"
+  process.env.NEXT_PUBLIC_API_BASE_URL || "https://cloudcam.server.fonder.tech"
 }/api/v1/reports`;
 
 export interface SystemTypeMeta {

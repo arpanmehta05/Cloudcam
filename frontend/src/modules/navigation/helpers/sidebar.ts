@@ -143,7 +143,7 @@ export function getSidebarTitle(pathname: string, provider?: string) {
   }
 
   if (pathname.startsWith("/services")) return "Services";
-  return "CloudWatcher";
+  return "Cloudcam";
 }
 
 export function getSidebarSections(
